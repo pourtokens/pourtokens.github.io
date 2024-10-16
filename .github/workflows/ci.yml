@@ -1,0 +1,34 @@
+name: deploy-to-gh-pages-branch
+
+on:
+    push:
+        branches: ["main"]
+    pull_request:
+        branches: ["main"]
+    workflow_dispatch:
+
+jobs:
+    build-and-deploy:
+        runs-on: ubuntu-latest
+
+        steps:
+            # Checks-out repository under $GITHUB_WORKSPACE, so the workflow job can access it
+            - name: Checkout
+              uses: actions/checkout@v4
+
+            # Builds the React app project
+            - name: Build with npm
+              env:
+                  REACT_APP_API_URL: ${{ secrets.REACT_APP_API_URL }}
+                  REACT_APP_ERC_20_ADDRESS: ${{ secrets.REACT_APP_ERC_20_ADDRESS }}
+              run: |
+                  npm ci
+                  npm run-script build
+
+            # Deploys to GitHub Pages
+            - name: Deploy build to gh-pages branch
+              uses: JamesIves/github-pages-deploy-action@releases/v3
+              with:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN}}
+                  BRANCH: gh-pages
+                  FOLDER: build

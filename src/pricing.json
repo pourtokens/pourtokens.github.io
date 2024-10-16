@@ -1,0 +1,32 @@
+[
+	{
+		"id": 1,
+		"token": "LUMIA",
+		"bundles": [
+			{
+				"amount": 50,
+				"priceUSD": 3
+			},
+			{
+				"amount": 100,
+				"priceUSD": 5
+			}
+		],
+		"lowSupplyThreshold": 500
+	},
+	{
+		"id": 2,
+		"token": "BERA",
+		"bundles": [
+			{
+				"amount": 5,
+				"priceUSD": 3
+			},
+			{
+				"amount": 10,
+				"priceUSD": 5
+			}
+		],
+		"lowSupplyThreshold": 50
+	}
+]
