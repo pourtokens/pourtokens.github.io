@@ -10,7 +10,7 @@ import { Toaster } from "./components/ui/sonner";
 import App from "./App";
 
 if (process.env.NODE_ENV === "production") {
-	ReactGA.initialize("G-NERN0M6MFS");
+	ReactGA.initialize(process.env.REACT_APP_GA_MEASUREMENT_ID as string);
 }
 
 const root = ReactDOM.createRoot(
