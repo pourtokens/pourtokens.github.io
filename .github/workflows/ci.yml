@@ -19,6 +19,7 @@ jobs:
               env:
                   REACT_APP_API_URL: ${{ secrets.REACT_APP_API_URL }}
                   REACT_APP_ERC_20_ADDRESS: ${{ secrets.REACT_APP_ERC_20_ADDRESS }}
+                  REACT_APP_GA_MEASUREMENT_ID: ${{ secrets.REACT_APP_GA_MEASUREMENT_ID }}
               run: |
                   npm ci
                   npm run-script build
