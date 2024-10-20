@@ -1,4 +1,4 @@
-import { Droplet, MessageCircle, Twitter, Github } from "lucide-react";
+import { Droplet, MessageCircle, Github } from "lucide-react";
 
 const Footer = () => {
 	return (
@@ -24,7 +24,7 @@ const Footer = () => {
 							<MessageCircle className="w-6 h-6" />
 							<span className="sr-only">Telegram support</span>
 						</a>
-						<a
+						{/* <a
 							href="https://twitter.com/pourtokens"
 							target="_blank"
 							rel="noopener noreferrer"
@@ -32,7 +32,7 @@ const Footer = () => {
 						>
 							<Twitter className="w-6 h-6" />
 							<span className="sr-only">Twitter</span>
-						</a>
+						</a> */}
 						<a
 							href="https://github.com/pourtokens"
 							target="_blank"
