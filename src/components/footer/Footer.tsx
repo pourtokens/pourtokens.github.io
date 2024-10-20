@@ -20,6 +20,7 @@ const Footer = () => {
 							target="_blank"
 							rel="noopener noreferrer"
 							className="hover:text-blue-400 transition-colors"
+							title="Telegram support"
 						>
 							<MessageCircle className="w-6 h-6" />
 							<span className="sr-only">Telegram support</span>
