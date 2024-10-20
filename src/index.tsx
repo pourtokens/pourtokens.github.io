@@ -8,6 +8,7 @@ import GAnalytics from "./components/analytics/GAnalytics";
 import NotFoundPage from "./components/not-found/NotFoundPage";
 import App from "./App";
 import Footer from "./components/footer/Footer";
+import TokenPage from "./components/token/TokenPage";
 
 const root = ReactDOM.createRoot(
 	document.getElementById("root") as HTMLElement
@@ -20,9 +21,8 @@ root.render(
 				<GAnalytics />
 				<Routes>
 					<Route path="/" element={<App />} />
-					{/* 
-					<Route path="/tokens" element={<TokensPage />} />
-					<Route path="/token/:tokenName" element={<TokenPage />} /> */}
+					{/* <Route path="/tokens" element={<TokensPage />} />*/}
+					<Route path="/:tokenName" element={<TokenPage />} />
 					<Route path="*" element={<NotFoundPage />} />{" "}
 				</Routes>
 				<Footer />
