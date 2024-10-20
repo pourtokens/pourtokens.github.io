@@ -16,13 +16,13 @@ const Footer = () => {
 					</div>
 					<div className="flex space-x-6">
 						<a
-							href="https://t.me/pourtokens"
+							href="https://t.me/pourtokens_support_bot"
 							target="_blank"
 							rel="noopener noreferrer"
 							className="hover:text-blue-400 transition-colors"
 						>
 							<MessageCircle className="w-6 h-6" />
-							<span className="sr-only">Telegram</span>
+							<span className="sr-only">Telegram support</span>
 						</a>
 						<a
 							href="https://twitter.com/pourtokens"
