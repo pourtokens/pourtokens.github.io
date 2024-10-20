@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { Send } from "lucide-react";
 
 const Footer = () => {
@@ -6,7 +7,9 @@ const Footer = () => {
 			<div className="container mx-auto px-4">
 				<div className="flex flex-col md:flex-row justify-between items-center">
 					<div className="mb-4 md:mb-0">
-						<h2 className="text-2xl font-bold">Pour Tokens</h2>
+						<Link to={"/"} className="flex items-center">
+							<h2 className="text-2xl font-bold">Pour Tokens</h2>
+						</Link>
 
 						<p className="text-gray-300">
 							The faucet that keeps on pouring
