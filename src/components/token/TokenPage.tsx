@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { Check, Network, Package, Wallet } from "lucide-react";
+import { Check, Info, Network, Package, Wallet } from "lucide-react";
 
 import { Card, CardContent } from "../ui/card";
 import { Slider } from "../ui/slider";
@@ -8,6 +8,12 @@ import { ToggleGroup, ToggleGroupItem } from "../ui/toggle-group";
 
 import Navbar from "../../components/header/Navbar";
 import PaymentDialog from "./payment/PaymentDialog";
+import {
+	Tooltip,
+	TooltipContent,
+	TooltipProvider,
+	TooltipTrigger,
+} from "../ui/tooltip";
 
 type TransactionToken = "USDC" | "USDT";
 
@@ -50,6 +56,18 @@ const TokenPage = () => {
 				description:
 					"Berachain is a Layer-1 blockchain fully compatible with the Ethereum Virtual Machine (EVM), designed to enhance decentralized finance (DeFi) applications. It stands out with its Proof of Liquidity (PoL) consensus mechanism, which rewards stakers for providing liquidity, thereby improving security and stability. The BeaconKit Framework, built using the Cosmos SDK, allows for modular EVM-compatible development, supporting both Layer-1 and Layer-2 solutions. Originally an NFT project, Berachain has evolved into a platform aimed at defragmenting liquidity, incentivizing DeFi development, and offering high accessibility for Ethereum-based projects.",
 				testnet: "Berachain bArtio",
+				maxAmount: 10,
+			},
+			story: {
+				name: "STORY",
+				description: "STORY description",
+				testnet: "Story Testnet",
+				maxAmount: 10,
+			},
+			sepoliaEth: {
+				name: "sepoliaETH",
+				description: "sepoliaETH description",
+				testnet: "Sepolia Testnet",
 				maxAmount: 10,
 			},
 		}),
@@ -121,19 +139,29 @@ const TokenPage = () => {
 						</Card>
 					</div>
 
-					<div className="w-full md:w-1/2">
-						<Card className="bg-gradient-to-br from-cyan-800 to-blue-800 border-2 border-cyan-500 text-white p-6">
+					<div className="flex flex-col gap-8 w-full md:w-1/2">
+						<Card className="bg-gradient-to-br from-cyan-800 to-blue-800 border-2 border-cyan-500 text-white pt-6">
 							<CardContent>
-								<h2 className="text-2xl font-bold mb-4">
+								<h2 className="text-2xl font-bold mb-1">
 									Request Tokens
 								</h2>
+
+								<p className="mb-4 text-sm">
+									Get {token?.name} on {token?.testnet}
+								</p>
+
 								<div className="mb-6">
 									<label
 										htmlFor="token-amount"
 										className="block text-sm font-medium text-gray-300 mb-2"
 									>
-										Token Amount: {requestTokenAmount}
+										Token Amount
 									</label>
+
+									<p className="text-lg mb-6 font-semibold">
+										{requestTokenAmount} {token?.name}
+									</p>
+
 									<Slider
 										id="token-amount"
 										min={0}
@@ -149,11 +177,49 @@ const TokenPage = () => {
 										}
 										className="w-full"
 									/>
+
+									<div className="flex justify-end mt-2 text-xs text-white/60">
+										<span>
+											Max: {token?.maxAmount}{" "}
+											{token?.name}
+										</span>
+									</div>
+								</div>
+
+								<div className="mb-6">
+									<div className="flex items-center space-x-2 mb-2">
+										<label className="block text-sm font-medium text-gray-300">
+											Convenience Fee
+										</label>
+
+										<TooltipProvider>
+											<Tooltip>
+												<TooltipTrigger asChild>
+													<Info
+														size={14}
+														className="hover:cursor-pointer text-gray-300"
+													></Info>
+												</TooltipTrigger>
+												<TooltipContent className="bg-gray-800 text-gray-300 border-none">
+													<p>
+														While we provide testnet
+														tokens for free, we
+														charge a convenience fee
+														for each token request
+													</p>
+												</TooltipContent>
+											</Tooltip>
+										</TooltipProvider>
+									</div>
+
+									<p className="text-lg font-semibold">
+										5 {paymentCurrency}{" "}
+									</p>
 								</div>
 
 								<div className="mb-6">
 									<label className="block text-sm font-medium text-gray-300 mb-2">
-										Payment Currency
+										Fee Payment Coin
 									</label>
 									<ToggleGroup
 										type="single"
@@ -189,17 +255,17 @@ const TokenPage = () => {
 								/>
 							</CardContent>
 						</Card>
+
+						<Card className="bg-gradient-to-br from-cyan-800 to-blue-800 border-2 border-cyan-500 text-white">
+							<CardContent className="p-6">
+								<h2 className="text-2xl font-bold mb-4">
+									What is {token?.name}?
+								</h2>
+								<p>{token?.description}</p>
+							</CardContent>
+						</Card>
 					</div>
 				</div>
-
-				<Card className="bg-gradient-to-br from-cyan-800 to-blue-800 border-2 border-cyan-500 text-white">
-					<CardContent className="p-6">
-						<h2 className="text-2xl font-bold mb-4">
-							What is {token?.name}?
-						</h2>
-						<p>{token?.description}</p>
-					</CardContent>
-				</Card>
 			</div>
 
 			<section className="bg-gradient-to-b from-cyan-900 to-blue-900 text-white py-20 mt-12 rounded-lg">
