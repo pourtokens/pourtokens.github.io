@@ -1,14 +1,15 @@
+import { forwardRef } from "react";
 import { Link } from "react-router-dom";
 import { Check, HandCoins, Network, Package, Wallet } from "lucide-react";
 
-import { Button } from "../ui/button";
-import { Card, CardContent } from "../ui/card";
+import { Button } from "../../components/ui/button";
+import { Card, CardContent } from "../../components/ui/card";
 
-const Bundles = () => {
+const Bundles = forwardRef<HTMLElement>((props, ref) => {
 	return (
 		<>
 			{/* <WalletConnection /> */}
-			<section className="text-white py-20" id="tokens">
+			<section className="text-white py-20" ref={ref}>
 				<div className="container mx-auto px-4">
 					<h2 className="text-3xl md:text-4xl font-bold mb-8 text-center">
 						Available Tokens
@@ -108,6 +109,6 @@ const Bundles = () => {
 			</section>
 		</>
 	);
-};
+});
 
 export default Bundles;
