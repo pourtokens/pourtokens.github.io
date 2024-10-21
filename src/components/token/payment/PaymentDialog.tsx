@@ -120,7 +120,7 @@ const PaymentDialog = ({
 					variant="outline"
 					className="w-full bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600"
 				>
-					Edit Profile
+					Request Tokens
 				</Button>
 			</DialogTrigger>
 

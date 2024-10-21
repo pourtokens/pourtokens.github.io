@@ -1,5 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { Check, Network, Package, Wallet } from "lucide-react";
+
 import { Card, CardContent } from "../ui/card";
 import { Slider } from "../ui/slider";
 import { ToggleGroup, ToggleGroupItem } from "../ui/toggle-group";
@@ -69,74 +71,176 @@ const TokenPage = () => {
 	return (
 		<>
 			<Navbar />
-			<div className="container mx-auto px-4 py-8">
+			<div className="container mx-auto px-10 py-8">
 				<h1 className="text-3xl font-bold mb-6">{token?.name}</h1>
 
-				<div className="py-10">
-					<label
-						htmlFor="token-amount"
-						className="block text-sm font-medium text-gray-300 mb-2"
-					>
-						Token Amount: {requestTokenAmount}
-					</label>
+				<div className="flex flex-col-reverse md:flex-row gap-8">
+					<div className="w-full md:w-1/2">
+						<Card className="bg-gradient-to-br from-cyan-800 to-blue-800 border-2 border-cyan-500 text-white mb-8">
+							<CardContent className="p-6">
+								<h2 className="text-2xl font-bold mb-4">
+									About Faucets and Pour Tokens
+								</h2>
+								<p className="mb-4">
+									Faucets drip testnet tokens to anyone who
+									requests them, usually for free. Most
+									faucets, however, limit the number of tokens
+									you can receive and may restrict how often
+									you can request them. They often involve
+									completing tasks like solving CAPTCHAs or
+									linking social accounts (GitHub, Discord,
+									X), which can be time-consuming.
+								</p>
+								<h3 className="text-xl font-bold mb-2">
+									How is Pour Tokens Different?
+								</h3>
+								<p>
+									At Pour Tokens, we offer a premium service
+									to help you get a large sum of testnet
+									tokens quickly and easily. Instead of
+									jumping through hoops or dealing with
+									delays, we provide tokens without the
+									typical hassles:
+								</p>
+								<ul className="list-disc list-inside mt-2 text-lg">
+									<li>no CAPTCHAs</li>
+									<li>no social media logins</li>
+									<li>
+										no limitations on how often you can
+										request them
+									</li>
+								</ul>
+								<p className="mt-4">
+									We do charge a{" "}
+									<strong>one-time convenience fee</strong>,
+									but once paid, you can receive as many
+									testnet tokens as you need, with zero
+									frustration.
+								</p>
+							</CardContent>
+						</Card>
+					</div>
 
-					<Slider
-						id="token-amount"
-						min={0}
-						max={token?.maxAmount}
-						value={[requestTokenAmount]}
-						step={(token?.maxAmount as number) > 10 ? 10 : 1}
-						onValueChange={handleRequestAmountChange}
-						className="w-full"
-					/>
+					<div className="w-full md:w-1/2">
+						<Card className="bg-gradient-to-br from-cyan-800 to-blue-800 border-2 border-cyan-500 text-white p-6">
+							<CardContent>
+								<h2 className="text-2xl font-bold mb-4">
+									Request Tokens
+								</h2>
+								<div className="mb-6">
+									<label
+										htmlFor="token-amount"
+										className="block text-sm font-medium text-gray-300 mb-2"
+									>
+										Token Amount: {requestTokenAmount}
+									</label>
+									<Slider
+										id="token-amount"
+										min={0}
+										max={token?.maxAmount}
+										value={[requestTokenAmount]}
+										step={
+											(token?.maxAmount as number) > 10
+												? 10
+												: 1
+										}
+										onValueChange={
+											handleRequestAmountChange
+										}
+										className="w-full"
+									/>
+								</div>
+
+								<div className="mb-6">
+									<label className="block text-sm font-medium text-gray-300 mb-2">
+										Payment Currency
+									</label>
+									<ToggleGroup
+										type="single"
+										value={paymentCurrency}
+										onValueChange={
+											handlePaymentCurrencyChange
+										}
+										className="justify-start"
+									>
+										<ToggleGroupItem
+											value="USDC"
+											aria-label="Pay with USDC"
+											className="data-[state=on]:bg-cyan-500"
+										>
+											USDC
+										</ToggleGroupItem>
+										<ToggleGroupItem
+											value="USDT"
+											aria-label="Pay with USDT"
+											className="data-[state=on]:bg-cyan-500"
+										>
+											USDT
+										</ToggleGroupItem>
+									</ToggleGroup>
+								</div>
+
+								<PaymentDialog
+									transactionToken={
+										paymentCurrency as TransactionToken
+									}
+									requestedToken={token?.name as string}
+									requestedAmount={requestTokenAmount}
+								/>
+							</CardContent>
+						</Card>
+					</div>
 				</div>
 
-				<div className="pb-10">
-					<label className="block text-sm font-medium text-gray-300 mb-2">
-						Payment Currency
-					</label>
-
-					<ToggleGroup
-						type="single"
-						value={paymentCurrency}
-						onValueChange={handlePaymentCurrencyChange}
-						className="justify-start"
-					>
-						<ToggleGroupItem
-							value="USDC"
-							aria-label="Pay with USDC"
-							className="data-[state=on]:bg-cyan-500"
-						>
-							USDC
-						</ToggleGroupItem>
-						<ToggleGroupItem
-							value="USDT"
-							aria-label="Pay with USDT"
-							className="data-[state=on]:bg-cyan-500"
-						>
-							USDT
-						</ToggleGroupItem>
-					</ToggleGroup>
-				</div>
-
-				<PaymentDialog
-					transactionToken={paymentCurrency as TransactionToken}
-					requestedToken={token?.name as string}
-					requestedAmount={requestTokenAmount}
-				/>
-
-				<div className="container w-4/6 py-10">
-					<h3 className="text-3xl font-bold mb-6">
-						What is {token?.name}?
-					</h3>
-
-					<Card className="bg-gradient-to-br from-cyan-800 to-blue-800 border-2 border-cyan-500 text-white">
-						<CardContent className="p-6">
-							<p>{token?.description}</p>
-						</CardContent>
-					</Card>
-				</div>
+				<Card className="bg-gradient-to-br from-cyan-800 to-blue-800 border-2 border-cyan-500 text-white">
+					<CardContent className="p-6">
+						<h2 className="text-2xl font-bold mb-4">
+							What is {token?.name}?
+						</h2>
+						<p>{token?.description}</p>
+					</CardContent>
+				</Card>
 			</div>
+
+			<section className="bg-gradient-to-b from-cyan-900 to-blue-900 text-white py-20 mt-12 rounded-lg">
+				<div className="container mx-auto px-4">
+					<h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">
+						How It Works
+					</h2>
+					<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+						{[
+							{
+								icon: Package,
+								text: "Pick your token and amount",
+							},
+							{
+								icon: Wallet,
+								text: "Enter a wallet address where you want your tokens",
+							},
+							{
+								icon: Network,
+								text: "Select your desired network and payment option",
+							},
+							{
+								icon: Check,
+								text: "Get a fresh pour of tokens",
+							},
+						].map((step, index) => (
+							<div
+								key={index}
+								className="flex flex-col items-center text-center"
+							>
+								<div className="w-16 h-16 rounded-full bg-gradient-to-r from-cyan-500 to-blue-500 flex items-center justify-center mb-4">
+									<step.icon className="w-8 h-8 text-white" />
+								</div>
+								<p className="text-lg font-semibold">
+									{index + 1}. {step.text}
+								</p>
+							</div>
+						))}
+					</div>
+				</div>
+			</section>
 		</>
 	);
 };
