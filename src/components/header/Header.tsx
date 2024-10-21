@@ -17,7 +17,7 @@ const Header = () => {
 					</h1>
 
 					<p className="text-xl md:text-2xl text-gray-300 max-w-2xl">
-						The Faucet That Won't Make You Rage Quit!
+						Say Goodbye to Faucet Frustration
 					</p>
 
 					<p className="text-lg text-gray-300 max-w-2xl">
