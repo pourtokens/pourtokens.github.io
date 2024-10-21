@@ -1,11 +1,16 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { Droplet, PlayCircle } from "lucide-react";
 
 import { Button } from "../ui/button";
 import { Dialog, DialogContent, DialogTrigger } from "../ui/dialog";
 import GalaxySVG from "../../assets/images/galaxy.svg";
 
-const Header = () => {
+interface HeaderProps {
+	tokenRef: React.RefObject<HTMLDivElement>;
+}
+
+const Header: React.FC<HeaderProps> = ({ tokenRef }) => {
 	const [isVideoOpen, setIsVideoOpen] = useState(false);
 
 	return (
@@ -63,7 +68,16 @@ const Header = () => {
 					</p>
 
 					<div className="flex flex-col sm:flex-row gap-4">
-						<Button className="bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white font-bold py-3 px-6 rounded-full transition duration-300 ease-in-out transform hover:scale-105">
+						<Button
+							className="bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white font-bold py-3 px-6 rounded-full transition duration-300 ease-in-out transform hover:scale-105"
+							onClick={() => {
+								if (tokenRef.current) {
+									tokenRef.current.scrollIntoView({
+										behavior: "smooth",
+									});
+								}
+							}}
+						>
 							Get Your Tokens
 							<Droplet className="ml-2 h-5 w-5" />
 						</Button>
