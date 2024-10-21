@@ -8,7 +8,7 @@ const Bundles = () => {
 	return (
 		<>
 			{/* <WalletConnection /> */}
-			<section className="text-white py-20">
+			<section className="text-white py-20" id="tokens">
 				<div className="container mx-auto px-4">
 					<h2 className="text-3xl md:text-4xl font-bold mb-8 text-center">
 						Available Tokens
@@ -22,34 +22,36 @@ const Bundles = () => {
 					<p className="text-xl text-center mb-12 max-w-2xl mx-auto">
 						Check out the tokens in store:
 					</p>
-
 					<div className="flex flex-col flex-wrap sm:flex-row gap-8 justify-center">
 						{[
-							{ name: "LUMIA", price: 0 },
-							{ name: "BERA", price: 0 },
+							{ name: "LUMIA", price: 5 },
+							{ name: "BERA", price: 5 },
 						].map((token, index) => (
 							<Card
 								key={index}
-								className="w-full sm:w-[230px] bg-gradient-to-br from-cyan-800 to-blue-800 border-2 border-cyan-500 hover:border-cyan-400 text-zinc-900 transition-all duration-300 transform hover:scale-105"
+								className="w-full sm:w-[280px] bg-gradient-to-br from-cyan-800 to-blue-800 border-2 border-cyan-500 hover:border-cyan-400 text-white transition-all duration-300 transform hover:scale-105 rounded-xl"
 							>
 								<CardContent className="p-6 flex flex-col items-center">
-									<HandCoins className="w-16 h-16 mb-4 text-cyan-400" />
-									<h3 className="text-2xl font-bold mb-2">
+									<HandCoins className="w-16 h-16 mb-4 text-purple-400" />
+									<h3 className="text-3xl font-bold mb-2">
 										{token.name}
 									</h3>
 
-									<p className="text-lg mb-4">
-										For{" "}
-										{token.price === 0
-											? "Free"
-											: token.price}
+									<p className="text-lg mb-4 text-gray-300 text-center">
+										Get {token.name} instantly for with no
+										hassle.
+									</p>
+
+									<p className="text-sm mb-4 text-gray-400 italic text-center">
+										No CAPTCHAs. No social media logins.
+										Just testnet tokens, fast.
 									</p>
 
 									<Link
 										to={`token/${token.name.toLowerCase()}`}
 									>
-										<Button className="bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white font-bold py-2 px-4 rounded-full transition duration-300 ease-in-out">
-											Get ${token.name}
+										<Button className="bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white font-bold py-2 px-6 rounded-full transition duration-300 ease-in-out">
+											Get {token.name}
 										</Button>
 									</Link>
 								</CardContent>
