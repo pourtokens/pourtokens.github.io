@@ -1,7 +1,11 @@
 import { Button } from "../ui/button";
 import { Droplet } from "lucide-react";
 
-const CTA = () => {
+interface CTAProps {
+	tokenRef: React.RefObject<HTMLDivElement>;
+}
+
+const CTA: React.FC<CTAProps> = ({ tokenRef }) => {
 	return (
 		<section className="bg-gradient-to-b from-blue-900 to-cyan-900 text-white py-20">
 			<div className="container mx-auto px-4">
@@ -30,7 +34,16 @@ const CTA = () => {
 				</div>
 
 				<div className="mt-12 flex justify-center">
-					<Button className="bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white font-bold py-3 px-6 rounded-full transition duration-300 ease-in-out transform hover:scale-105">
+					<Button
+						className="bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white font-bold py-3 px-6 rounded-full transition duration-300 ease-in-out transform hover:scale-105"
+						onClick={() => {
+							if (tokenRef.current) {
+								tokenRef.current.scrollIntoView({
+									behavior: "smooth",
+								});
+							}
+						}}
+					>
 						Start Pouring Now
 						<Droplet className="ml-2 h-5 w-5" />
 					</Button>
