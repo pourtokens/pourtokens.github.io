@@ -1,5 +1,4 @@
 import Header from "./components/header/Header";
-import Footer from "./components/footer/Footer";
 import Bundles from "./components/home/Bundles";
 import Offers from "./components/home/Offers";
 import CTA from "./components/home/CTA";
@@ -11,7 +10,6 @@ const App = () => {
 			<Offers />
 			<Bundles />
 			<CTA />
-			<Footer />
 		</div>
 	);
 };

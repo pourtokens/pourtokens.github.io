@@ -5,8 +5,9 @@ import "./index.css";
 
 import { Toaster } from "./components/ui/sonner";
 import GAnalytics from "./components/analytics/GAnalytics";
-import NotFound from "./components/not-found/NotFound";
+import NotFoundPage from "./components/not-found/NotFoundPage";
 import App from "./App";
+import Footer from "./components/footer/Footer";
 
 const root = ReactDOM.createRoot(
 	document.getElementById("root") as HTMLElement
@@ -14,16 +15,17 @@ const root = ReactDOM.createRoot(
 
 root.render(
 	<React.StrictMode>
-		<div className="bg-gradient-to-b from-cyan-900 to-blue-900 text-white">
+		<div className="min-h-dvh flex flex-col justify-between bg-gradient-to-b from-cyan-900 to-blue-900 text-white">
 			<Router>
 				<GAnalytics />
 				<Routes>
 					<Route path="/" element={<App />} />
-					{/* <Route path="/:tokenName" element={<TokenPage />} />{" "}
-					<Route path="/payment" element={<Payment />} />
-					<Route path="/success" element={<Success />} /> */}
-					<Route path="*" element={<NotFound />} />{" "}
+					{/* 
+					<Route path="/tokens" element={<TokensPage />} />
+					<Route path="/token/:tokenName" element={<TokenPage />} /> */}
+					<Route path="*" element={<NotFoundPage />} />{" "}
 				</Routes>
+				<Footer />
 			</Router>
 		</div>
 		<Toaster />
