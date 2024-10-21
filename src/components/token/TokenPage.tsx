@@ -4,6 +4,7 @@ import { Card, CardContent } from "../ui/card";
 import { Slider } from "../ui/slider";
 import { ToggleGroup, ToggleGroupItem } from "../ui/toggle-group";
 
+import Navbar from "../../components/header/Navbar";
 import PaymentDialog from "./payment/PaymentDialog";
 
 type TransactionToken = "USDC" | "USDT";
@@ -67,6 +68,7 @@ const TokenPage = () => {
 
 	return (
 		<>
+			<Navbar />
 			<div className="container mx-auto px-4 py-8">
 				<h1 className="text-3xl font-bold mb-6">{token?.name}</h1>
 
