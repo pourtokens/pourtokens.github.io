@@ -14,8 +14,8 @@ const Header: React.FC<HeaderProps> = ({ tokenRef }) => {
 	const [isVideoOpen, setIsVideoOpen] = useState(false);
 
 	return (
-		<header className="min-h-screen bg-gradient-to-br from-blue-900 via-blue-800 to-cyan-900 text-white flex justify-center">
-			<div className="container mx-auto px-4 py-20 flex flex-col lg:flex-row items-center justify-center gap-x-12">
+		<header className="min-h-dvh bg-gradient-to-br from-blue-900 via-blue-800 to-cyan-900 text-white flex justify-center">
+			<div className="container mx-auto px-10 py-20 flex flex-col lg:flex-row items-center justify-center gap-x-12">
 				<div className="lg:w-1/2 space-y-8">
 					<h1 className="text-5xl md:text-6xl font-extrabold leading-tight">
 						<span className="gradient">Pour Tokens</span>
@@ -41,7 +41,7 @@ const Header: React.FC<HeaderProps> = ({ tokenRef }) => {
 							<DialogTrigger asChild>
 								<Button
 									variant="link"
-									className="text-white text-lg hover:text-purple-200 h-0 p-0"
+									className="text-white text-lg hover:text-purple-200 h-0 py-3 px-0"
 								>
 									this guy{" "}
 									<PlayCircle
