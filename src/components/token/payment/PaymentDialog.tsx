@@ -60,9 +60,12 @@ const PaymentDialog = ({
 
 	const copyDepositAddress = () => {
 		navigator.clipboard.writeText(PAYMENT_ADDRESS as string);
-		toast.info("Address copied to clipboard!", {
-			description: PAYMENT_ADDRESS,
-		});
+		toast.info("Destination address copied to clipboard");
+	};
+
+	const copyTransactionAmount = () => {
+		navigator.clipboard.writeText(transactionAmount.toString());
+		toast.info("Fee amount copied to clipboard");
 	};
 
 	const sendTransaction = async () => {
@@ -126,10 +129,10 @@ const PaymentDialog = ({
 
 			<DialogContent className="bg-gradient-to-br from-blue-900 to-cyan-900 border-2 border-cyan-500 text-white">
 				<DialogHeader>
-					<DialogTitle>Make Transaction</DialogTitle>
+					<DialogTitle>Request Tokens</DialogTitle>
 
-					<DialogDescription>
-						Please send the requested amount to the address below
+					<DialogDescription className="text-white/60">
+						You will receive your tokens on {requestedToken} Testnet
 					</DialogDescription>
 				</DialogHeader>
 
@@ -141,15 +144,28 @@ const PaymentDialog = ({
 
 						<Input
 							id="deposit_address"
-							placeholder={`Enter the address where you will get ${requestedToken} tokens`}
+							placeholder={`The address where you will receive ${requestedToken} testnet tokens`}
 							defaultValue={depositAddress as string}
 							className="text-gray-800"
 							onChange={handleInput}
 						/>
 					</div>
+					<div className="flex flex-col items-start gap-4">
+						<Label htmlFor="amount" className="text-right">
+							Convenience Fee
+						</Label>
+
+						<Input
+							id="amount"
+							value={`${transactionAmount} ${transactionToken}`}
+							className="text-gray-800"
+							onMouseDown={copyTransactionAmount}
+							readOnly
+						/>
+					</div>
 
 					<div className="flex flex-col items-start gap-4">
-						<Label className="text-right">Network</Label>
+						<Label className="text-right">Fee Network</Label>
 
 						<Select
 							onValueChange={handleSelect}
@@ -168,6 +184,16 @@ const PaymentDialog = ({
 									</SelectItem>
 
 									<SelectItem value="base">Base</SelectItem>
+
+									<SelectItem value="bsc">
+										Binance Smart Chain
+									</SelectItem>
+
+									<SelectItem value="mode">Mode</SelectItem>
+
+									<SelectItem value="optimism">
+										Optimism
+									</SelectItem>
 								</SelectGroup>
 							</SelectContent>
 						</Select>
@@ -175,36 +201,24 @@ const PaymentDialog = ({
 
 					{depositAddress && transactionNetwork && (
 						<div className="flex flex-col items-start gap-4">
-							<Label htmlFor="amount" className="text-right">
-								Amount ({transactionToken})
-							</Label>
-
-							<Input
-								id="amount"
-								value={transactionAmount}
-								className="text-gray-800"
-								readOnly
-							/>
-						</div>
-					)}
-
-					{depositAddress && transactionNetwork && (
-						<div className="flex flex-col items-start gap-4">
 							<Label
-								htmlFor="deposit_address"
+								htmlFor="destination_address"
 								className="text-right"
-								onClick={copyDepositAddress}
 							>
 								Destination Address
 							</Label>
 
 							<Input
-								id="deposit_address"
+								id="destination_address"
 								defaultValue={PAYMENT_ADDRESS}
 								className="text-gray-600"
 								onMouseDown={copyDepositAddress}
 								readOnly
 							/>
+							<small className="text-white/60">
+								Please send the convenience fee to the
+								destination address.
+							</small>
 						</div>
 					)}
 				</div>

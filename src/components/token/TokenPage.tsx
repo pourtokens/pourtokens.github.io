@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { Check, Network, Package, Wallet } from "lucide-react";
+import { Check, Forward, Info, Network, Package, Wallet } from "lucide-react";
 
 import { Card, CardContent } from "../ui/card";
 import { Slider } from "../ui/slider";
@@ -8,6 +8,12 @@ import { ToggleGroup, ToggleGroupItem } from "../ui/toggle-group";
 
 import Navbar from "../../components/header/Navbar";
 import PaymentDialog from "./payment/PaymentDialog";
+import {
+	Tooltip,
+	TooltipContent,
+	TooltipProvider,
+	TooltipTrigger,
+} from "../ui/tooltip";
 
 type TransactionToken = "USDC" | "USDT";
 
@@ -52,15 +58,23 @@ const TokenPage = () => {
 				testnet: "Berachain bArtio",
 				maxAmount: 10,
 			},
+			story: {
+				name: "STORY",
+				description: "STORY description",
+				testnet: "Story Testnet",
+				maxAmount: 10,
+			},
+			sepoliaEth: {
+				name: "sepoliaETH",
+				description: "sepoliaETH description",
+				testnet: "Sepolia Testnet",
+				maxAmount: 10,
+			},
 		}),
 		[]
 	);
 
 	useEffect(() => {
-		if (!tokenName) {
-			navigate("/bundles");
-		}
-
 		if (!tokenInfo[tokenName as keyof TokenInfo]) {
 			navigate("/not-found");
 		}
@@ -71,69 +85,64 @@ const TokenPage = () => {
 	return (
 		<>
 			<Navbar />
-			<div className="container mx-auto px-10 py-8">
-				<h1 className="text-3xl font-bold mb-6">{token?.name}</h1>
+			<div className="container mx-auto px-10 md:px-20 py-8">
+				<h1 className="text-3xl font-bold mb-2">{token?.name}</h1>
 
-				<div className="flex flex-col-reverse md:flex-row gap-8">
-					<div className="w-full md:w-1/2">
-						<Card className="bg-gradient-to-br from-cyan-800 to-blue-800 border-2 border-cyan-500 text-white mb-8">
-							<CardContent className="p-6">
-								<h2 className="text-2xl font-bold mb-4">
-									About Faucets and Pour Tokens
-								</h2>
-								<p className="mb-4">
-									Faucets drip testnet tokens to anyone who
-									requests them, usually for free. Most
-									faucets, however, limit the number of tokens
-									you can receive and may restrict how often
-									you can request them. They often involve
-									completing tasks like solving CAPTCHAs or
-									linking social accounts (GitHub, Discord,
-									X), which can be time-consuming.
-								</p>
-								<h3 className="text-xl font-bold mb-2">
-									How is Pour Tokens Different?
-								</h3>
-								<p>
-									At Pour Tokens, we offer a premium service
-									to help you get a large sum of testnet
-									tokens quickly and easily. Instead of
-									jumping through hoops or dealing with
-									delays, we provide tokens without the
-									typical hassles:
-								</p>
-								<ul className="list-disc list-inside mt-2 text-lg">
-									<li>no CAPTCHAs</li>
-									<li>no social media logins</li>
-									<li>
-										no limitations on how often you can
-										request them
-									</li>
-								</ul>
-								<p className="mt-4">
-									We do charge a{" "}
-									<strong>one-time convenience fee</strong>,
-									but once paid, you can receive as many
-									testnet tokens as you need, with zero
-									frustration.
-								</p>
-							</CardContent>
-						</Card>
+				<h3 className="text-xl mb-6">Testnet Tokens</h3>
+
+				<div className="flex flex-col-reverse md:flex-row gap-6 lg:gap-10">
+					<div className="w-full md:w-1/2 text-white/80">
+						<p className="mb-4">
+							Faucets drip testnet tokens to anyone who requests
+							them, usually for free. Most faucets, however, limit
+							the number of tokens you can receive and may
+							restrict how often you can request them. They often
+							involve completing tasks like solving CAPTCHAs or
+							linking social accounts (GitHub, Discord, X),
+							humanity verification like Gitcoin Passport, which
+							can be time-consuming.
+						</p>
+						<p>
+							We offer a premium service to help you get a large
+							sum of testnet tokens quickly and easily. We provide
+							tokens without the typical hassles.
+						</p>
+						<ul className="list-disc list-inside mt-4 mx-6 space-y-4">
+							<li>No more CAPTCHAs</li>
+							<li>No more time limitations</li>
+							<li>No more proof of humanity</li>
+							<li>No more social media logins</li>
+						</ul>
+						<p className="mt-4">
+							While we provide testnet tokens for free, this
+							service comes with a{" "}
+							<strong>convenience fee at each request</strong>.
+						</p>
 					</div>
 
-					<div className="w-full md:w-1/2">
-						<Card className="bg-gradient-to-br from-cyan-800 to-blue-800 border-2 border-cyan-500 text-white p-6">
+					<div className="flex flex-col gap-8 w-full md:w-1/2">
+						<Card className="bg-gradient-to-br from-cyan-800 to-blue-800 border-2 border-cyan-500 text-white pt-6">
 							<CardContent>
-								<h2 className="text-2xl font-bold mb-4">
+								<h2 className="text-2xl font-bold mb-1">
 									Request Tokens
 								</h2>
+
+								<p className="mb-4 text-sm">
+									Get {token?.name} on {token?.testnet}
+								</p>
+
 								<div className="mb-6">
 									<label
 										htmlFor="token-amount"
 										className="block text-sm font-medium text-gray-300 mb-2"
 									>
-										Token Amount: {requestTokenAmount}
+										Token Amount
 									</label>
+
+									<p className="text-lg mb-6 font-semibold">
+										{requestTokenAmount} {token?.name}
+									</p>
+
 									<Slider
 										id="token-amount"
 										min={0}
@@ -149,11 +158,48 @@ const TokenPage = () => {
 										}
 										className="w-full"
 									/>
+
+									<div className="flex justify-end mt-2 text-xs text-white/60">
+										<span>
+											Max: {token?.maxAmount}{" "}
+											{token?.name}
+										</span>
+									</div>
+								</div>
+
+								<div className="mb-6">
+									<div className="flex items-center space-x-2 mb-2">
+										<label className="block text-sm font-medium text-gray-300">
+											Convenience Fee
+										</label>
+
+										<TooltipProvider>
+											<Tooltip>
+												<TooltipTrigger asChild>
+													<Info
+														size={14}
+														className="hover:cursor-pointer text-gray-300"
+													></Info>
+												</TooltipTrigger>
+												<TooltipContent className="bg-gray-800 text-gray-300 border-none">
+													<p>
+														We charge a convenience
+														fee for each testnet
+														token request
+													</p>
+												</TooltipContent>
+											</Tooltip>
+										</TooltipProvider>
+									</div>
+
+									<p className="text-lg font-semibold">
+										5 {paymentCurrency}{" "}
+									</p>
 								</div>
 
 								<div className="mb-6">
 									<label className="block text-sm font-medium text-gray-300 mb-2">
-										Payment Currency
+										Fee Payment Coin
 									</label>
 									<ToggleGroup
 										type="single"
@@ -192,14 +238,12 @@ const TokenPage = () => {
 					</div>
 				</div>
 
-				<Card className="bg-gradient-to-br from-cyan-800 to-blue-800 border-2 border-cyan-500 text-white">
-					<CardContent className="p-6">
-						<h2 className="text-2xl font-bold mb-4">
-							What is {token?.name}?
-						</h2>
-						<p>{token?.description}</p>
-					</CardContent>
-				</Card>
+				<div className="w-full text-white/80 pt-8 mx-auto md:w-4/5">
+					<h2 className="text-2xl font-bold mb-4">
+						What is {token?.name}?
+					</h2>
+					<p>{token?.description}</p>
+				</div>
 			</div>
 
 			<section className="bg-gradient-to-b from-cyan-900 to-blue-900 text-white py-20 mt-12 rounded-lg">
@@ -207,11 +251,11 @@ const TokenPage = () => {
 					<h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">
 						How It Works
 					</h2>
-					<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+					<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
 						{[
 							{
 								icon: Package,
-								text: "Pick your token and amount",
+								text: "Pick your token amount and fee payment option",
 							},
 							{
 								icon: Wallet,
@@ -219,11 +263,15 @@ const TokenPage = () => {
 							},
 							{
 								icon: Network,
-								text: "Select your desired network and payment option",
+								text: "Select a network for fee payment",
+							},
+							{
+								icon: Forward,
+								text: "Send convenience fee to destination address",
 							},
 							{
 								icon: Check,
-								text: "Get a fresh pour of tokens",
+								text: "Get a fresh pour of testnet tokens",
 							},
 						].map((step, index) => (
 							<div

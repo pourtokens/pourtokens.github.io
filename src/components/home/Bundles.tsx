@@ -49,7 +49,7 @@ const Bundles = forwardRef<HTMLElement>((props, ref) => {
 									</p>
 
 									<Link
-										to={`token/${token.name.toLowerCase()}`}
+										to={`/token/${token.name.toLowerCase()}`}
 									>
 										<Button className="bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white font-bold py-2 px-6 rounded-full transition duration-300 ease-in-out">
 											Get {token.name}
