@@ -29,10 +29,12 @@ interface PaymentDialogProps {
 	transactionToken: "USDC" | "USDT";
 	requestedToken: string;
 	requestedAmount: number;
+	testnetNetwork: string;
 }
 
 const PaymentDialog = ({
 	transactionToken,
+	testnetNetwork,
 	requestedToken,
 	requestedAmount,
 }: PaymentDialogProps) => {
@@ -132,7 +134,7 @@ const PaymentDialog = ({
 					<DialogTitle>Request Tokens</DialogTitle>
 
 					<DialogDescription className="text-white/60">
-						You will receive your tokens on {requestedToken} Testnet
+						You will receive your tokens on {testnetNetwork}
 					</DialogDescription>
 				</DialogHeader>
 
