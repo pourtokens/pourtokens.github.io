@@ -21,7 +21,7 @@ type TokenInfo = {
 	[key: string]: {
 		name: string;
 		description: string;
-		testnet: string;
+		network: string;
 		maxAmount: number;
 	};
 };
@@ -48,26 +48,26 @@ const TokenPage = () => {
 				name: "LUMIA",
 				description:
 					"Lumia is a Layer 2 blockchain platform built on the Polygon Chain Development Kit (CDK), designed to integrate Real-World Assets (RWAs) into decentralized finance (DeFi). It enhances liquidity and capital efficiency through its native module, Lumia Stream, and is equipped for scalability and interoperability with solutions like NearDA and Polygon AggLayer. Lumia ensures security via a decentralized sequencer network and prioritizes user experience with features like Account Abstraction and PolygonID. It also offers advanced yield optimization strategies and is positioned as a leader in the tokenized RWA industry.",
-				testnet: "Lumia Testnet",
+				network: "Lumia Testnet",
 				maxAmount: 100,
 			},
 			bera: {
 				name: "BERA",
 				description:
 					"Berachain is a Layer-1 blockchain fully compatible with the Ethereum Virtual Machine (EVM), designed to enhance decentralized finance (DeFi) applications. It stands out with its Proof of Liquidity (PoL) consensus mechanism, which rewards stakers for providing liquidity, thereby improving security and stability. The BeaconKit Framework, built using the Cosmos SDK, allows for modular EVM-compatible development, supporting both Layer-1 and Layer-2 solutions. Originally an NFT project, Berachain has evolved into a platform aimed at defragmenting liquidity, incentivizing DeFi development, and offering high accessibility for Ethereum-based projects.",
-				testnet: "Berachain bArtio",
+				network: "Berachain bArtio",
 				maxAmount: 10,
 			},
 			story: {
 				name: "STORY",
 				description: "STORY description",
-				testnet: "Story Testnet",
+				network: "Story Testnet",
 				maxAmount: 10,
 			},
 			sepoliaEth: {
 				name: "sepoliaETH",
 				description: "sepoliaETH description",
-				testnet: "Sepolia Testnet",
+				network: "Sepolia Testnet",
 				maxAmount: 10,
 			},
 		}),
@@ -128,7 +128,7 @@ const TokenPage = () => {
 								</h2>
 
 								<p className="mb-4 text-sm">
-									Get {token?.name} on {token?.testnet}
+									Get {token?.name} on {token?.network}
 								</p>
 
 								<div className="mb-6">
@@ -230,6 +230,7 @@ const TokenPage = () => {
 									transactionToken={
 										paymentCurrency as TransactionToken
 									}
+									testnetNetwork={token?.network as string}
 									requestedToken={token?.name as string}
 									requestedAmount={requestTokenAmount}
 								/>
