@@ -14,6 +14,7 @@ import {
 	TooltipProvider,
 	TooltipTrigger,
 } from "../ui/tooltip";
+import { Checkbox } from "../ui/checkbox";
 
 type TransactionToken = "USDC" | "USDT";
 
@@ -31,6 +32,7 @@ const TokenPage = () => {
 
 	const [requestTokenAmount, setRequestTokenAmount] = useState<number>(0);
 	const [paymentCurrency, setPaymentCurrency] = useState<string>("USDC");
+	const [isAccepted, setIsAccepted] = useState<boolean>(false);
 
 	const navigate = useNavigate();
 
@@ -40,6 +42,10 @@ const TokenPage = () => {
 
 	const handlePaymentCurrencyChange = (value: string) => {
 		if (value) setPaymentCurrency(value);
+	};
+
+	const handleAcceptChange = (checked: boolean) => {
+		setIsAccepted(checked);
 	};
 
 	const tokenInfo: TokenInfo = useMemo(
@@ -226,6 +232,22 @@ const TokenPage = () => {
 									</ToggleGroup>
 								</div>
 
+								<div className="flex justify-start items-center gap-4 mx-4 mb-4">
+									<Checkbox
+										className="border-gray-300 w-4 h-4"
+										id="accept"
+										onCheckedChange={handleAcceptChange}
+									/>
+
+									<label
+										htmlFor="accept"
+										className="text-xs text-gray-300 hover:cursor-pointer"
+									>
+										I accept the condition of paying a
+										convenience fee to use this service.
+									</label>
+								</div>
+
 								<PaymentDialog
 									transactionToken={
 										paymentCurrency as TransactionToken
@@ -233,6 +255,7 @@ const TokenPage = () => {
 									testnetNetwork={token?.network as string}
 									requestedToken={token?.name as string}
 									requestedAmount={requestTokenAmount}
+									isConditionAccepted={isAccepted}
 								/>
 							</CardContent>
 						</Card>

@@ -30,6 +30,7 @@ interface PaymentDialogProps {
 	requestedToken: string;
 	requestedAmount: number;
 	testnetNetwork: string;
+	isConditionAccepted: boolean;
 }
 
 const PaymentDialog = ({
@@ -37,16 +38,26 @@ const PaymentDialog = ({
 	testnetNetwork,
 	requestedToken,
 	requestedAmount,
+	isConditionAccepted,
 }: PaymentDialogProps) => {
 	const PAYMENT_ADDRESS = process.env.REACT_APP_ERC_20_ADDRESS;
 
-	const [depositAddress, setDepositAddress] = useState<string | null>(null);
-	const [transactionNetwork, setTransactionNetwork] =
-		useState<TransactionNetwork | null>(null);
 	const [isPaymentDialogOpen, setIsPaymentDialogOpen] =
 		useState<boolean>(false);
-	const [isLoading, setIsLoading] = useState<boolean>(false);
+	const [transactionNetwork, setTransactionNetwork] =
+		useState<TransactionNetwork | null>(null);
+	const [depositAddress, setDepositAddress] = useState<string | null>(null);
 	const transactionAmount: number = 5;
+	const [isLoading, setIsLoading] = useState<boolean>(false);
+
+	const handlePaymentDialogTrigger = () => {
+		if (!isConditionAccepted) {
+			setIsPaymentDialogOpen(false);
+			return;
+		}
+
+		setIsPaymentDialogOpen(true);
+	};
 
 	const handleInput = (e: ChangeEvent<HTMLInputElement>) => {
 		if (e.target.value.trim() === "") {
@@ -122,8 +133,10 @@ const PaymentDialog = ({
 		>
 			<DialogTrigger asChild>
 				<Button
+					onClick={handlePaymentDialogTrigger}
+					disabled={!isConditionAccepted}
 					variant="outline"
-					className="w-full bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600"
+					className="w-full bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 hover:text-white"
 				>
 					Request Tokens
 				</Button>
