@@ -39,7 +39,7 @@ const Bundles = forwardRef<HTMLElement>((props, ref) => {
 									</h3>
 
 									<p className="text-lg mb-4 text-gray-300 text-center">
-										Get {token.name} instantly for with no
+										Get {token.name} instantly with no
 										hassle.
 									</p>
 
