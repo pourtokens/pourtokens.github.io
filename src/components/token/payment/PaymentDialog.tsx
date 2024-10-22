@@ -185,6 +185,10 @@ const PaymentDialog = ({
 
 									<SelectItem value="base">Base</SelectItem>
 
+									<SelectItem value="bsc">
+										Binance Smart Chain
+									</SelectItem>
+
 									<SelectItem value="mode">Mode</SelectItem>
 
 									<SelectItem value="optimism">
