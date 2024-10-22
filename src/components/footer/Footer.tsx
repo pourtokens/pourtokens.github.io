@@ -20,7 +20,7 @@ const Footer = () => {
 						<p className="mr-4">Need help?</p>
 
 						<a
-							href="https://t.me/pourtokens_support_bot"
+							href="https://t.me/pourtokens_help_bot"
 							target="_blank"
 							rel="noopener noreferrer"
 							className="flex items-center bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white font-bold py-2 px-4 rounded-full transition duration-300 ease-in-out"
