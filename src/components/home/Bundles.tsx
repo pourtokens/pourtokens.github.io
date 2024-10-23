@@ -25,11 +25,31 @@ const Bundles = forwardRef<HTMLElement>((props, ref) => {
 					</p>
 					<div className="flex flex-col flex-wrap sm:flex-row gap-8 justify-center">
 						{[
-							{ name: "holeskyETH", network: "Holesky Testnet" },
-							{ name: "sepoliaETH", network: "Sepolia Testnet" },
-							{ name: "BERA", network: "Berachain bArtio" },
-							{ name: "IP", network: "Story Testnet" },
-							{ name: "LUMIA", network: "LUMIA Testnet" },
+							{
+								name: "holeskyETH",
+								label: "holesky-eth",
+								network: "Holesky Testnet",
+							},
+							{
+								name: "sepoliaETH",
+								label: "sepolia-eth",
+								network: "Sepolia Testnet",
+							},
+							{
+								name: "BERA",
+								label: "bera",
+								network: "Berachain bArtio",
+							},
+							{
+								name: "IP",
+								label: "ip",
+								network: "Story Testnet",
+							},
+							{
+								name: "LUMIA",
+								label: "lumia",
+								network: "LUMIA Testnet",
+							},
 						].map((token, index) => (
 							<Card
 								key={index}
@@ -50,9 +70,7 @@ const Bundles = forwardRef<HTMLElement>((props, ref) => {
 										hassle.
 									</p>
 
-									<Link
-										to={`/token/${token.name.toLowerCase()}`}
-									>
+									<Link to={`/token/${token.label}`}>
 										<Button className="bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white font-bold py-2 px-6 rounded-full transition duration-300 ease-in-out">
 											Get {token.name}
 										</Button>

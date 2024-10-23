@@ -36,13 +36,13 @@ type TransactionNetwork =
 	| "op";
 
 type TokenInfo = {
-	[key: string]: {
-		name: string;
-		description: string;
-		network: string;
-		maxAmount: number;
-	};
-};
+	name: string;
+	description: string;
+	label: string;
+	maxAmount: number;
+	network: string;
+	steps?: number;
+}[];
 
 const paymentNetworkOptions = [
 	{
@@ -155,53 +155,65 @@ const TokenPage = () => {
 	};
 
 	const tokenInfo: TokenInfo = useMemo(
-		() => ({
-			holeskyEth: {
+		() => [
+			{
 				name: "holeskyETH",
 				description:
 					"HoleskyETH is the main token of the Holesky testnet, a new Ethereum public testing environment designed for technical experimentation with Ethereum's infrastructure and protocol upgrades. Launched in September 2023, Holesky aims to address the limitations of its predecessor, the Goerli testnet, which suffered from a shortage of testnet tokens and rising costs. Holesky features a significantly larger fixed supply of 1.6 billion tokens, ensuring ample resources for developers. Validators can stake HoleskyETH to participate in network validation, and the testnet supports 1.4 million validators, facilitating testing for Ethereum’s future developments, including the upcoming Dencun upgrade.",
-				network: "Holesky Testnet",
+				label: "holesky-eth",
 				maxAmount: 10,
+				network: "Holesky Testnet",
 			},
-			sepoliaEth: {
+			{
 				name: "sepoliaETH",
 				description:
 					"SepoliaETH is the native token of the Sepolia Testnet, a testing environment for Ethereum developers. Sepolia, which has transitioned from Proof of Work to Proof of Stake like the Ethereum mainnet, allows developers to deploy and test smart contracts in a safe, low-stakes environment. SepoliaETH is used to pay for gas fees on the network, enabling transactions and contract executions. To make the development process smoother, Sepolia offers a faucet service that provides SepoliaETH for free, ensuring developers can run their decentralized applications (dApps) without financial risk.",
-				network: "Sepolia Testnet",
+				label: "sepolia-eth",
 				maxAmount: 20,
+				network: "Sepolia Testnet",
 			},
-			lumia: {
+			{
 				name: "LUMIA",
 				description:
 					"LUMIA is a next-generation blockchain platform designed to support the entire life cycle of real-world assets (RWAs), from tokenization to their integration into decentralized finance (DeFi) and Web3. Unlike other projects that only focus on tokenizing RWAs, LUMIA aims to bridge billions of dollars in liquidity by connecting tokenized assets to millions of DeFi traders. As part of its ecosystem, LUMIA also offers exclusive airdrops, with details for the Season 1 airdrop coming soon, providing early participants additional rewards.",
-				network: "Lumia Testnet",
 				maxAmount: 100,
+				label: "lumia",
+				network: "Lumia Testnet",
+				steps: 5,
 			},
-			bera: {
+			{
 				name: "BERA",
+
 				description:
 					"BERA is the native token of Berachain, a high-performance EVM-identical Layer 1 blockchain that uses Proof-of-Liquidity (PoL) as its consensus mechanism. PoL rewards ecosystem liquidity, encouraging efficient trading, price stability, and network growth while securing the chain. Berachain is fully compatible with Ethereum's infrastructure, as it supports unmodified execution clients like Geth and Erigon, allowing it to adopt the latest EVM upgrades seamlessly. The BERA token plays a central role in maintaining the network, participating in its liquidity-driven consensus mechanism, and interacting with its native decentralized applications (dApps) like BEX and Bend.",
-				network: "Berachain bArtio",
 				maxAmount: 10,
+				label: "bera",
+				network: "Berachain bArtio",
 			},
-			ip: {
+			{
 				name: "IP",
 				description:
 					'IP, the token within the Story Network, represents "Intellectual Property" on the blockchain and transforms the way IP is licensed, remixed, and monetized. By creating "IP Assets" (tokenized representations of intellectual property) on a purpose-built layer 1 blockchain, Story automates complex legal processes typically handled by lawyers. IP holders set programmable licensing terms, enforced by smart contracts, allowing creators to seamlessly collaborate and generate revenue from their works. The Proof-of-Creativity Protocol ensures transparent, decentralized management of IP, while the Programmable IP License bridges the blockchain and legal world, enabling real-world enforcement.',
-				network: "Story Testnet",
 				maxAmount: 10,
+				label: "ip",
+				network: "Story Testnet",
 			},
-		}),
+		],
 		[]
 	);
 
 	useEffect(() => {
-		if (!tokenInfo[tokenName as keyof TokenInfo]) {
+		const tokenExists = tokenInfo.some(
+			(token) => token.label === tokenName
+		);
+		if (!tokenExists) {
 			navigate("/not-found");
 		}
 	}, [tokenName, tokenInfo, navigate]);
 
-	const token = tokenName ? tokenInfo[tokenName] : null;
+	const token = tokenName
+		? tokenInfo.find((token) => token.label === tokenName)
+		: null;
 
 	return (
 		<>
@@ -269,11 +281,7 @@ const TokenPage = () => {
 										min={0}
 										max={token?.maxAmount}
 										value={[requestTokenAmount]}
-										step={
-											(token?.maxAmount as number) > 10
-												? 10
-												: 1
-										}
+										step={token?.steps ? token.steps : 1}
 										onValueChange={
 											handleRequestAmountChange
 										}
