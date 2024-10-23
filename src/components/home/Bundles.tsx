@@ -25,12 +25,15 @@ const Bundles = forwardRef<HTMLElement>((props, ref) => {
 					</p>
 					<div className="flex flex-col flex-wrap sm:flex-row gap-8 justify-center">
 						{[
-							{ name: "LUMIA", price: 5 },
-							{ name: "BERA", price: 5 },
+							{ name: "holeskyETH", network: "Holesky Testnet" },
+							{ name: "sepoliaETH", network: "Sepolia Testnet" },
+							{ name: "BERA", network: "Berachain bArtio" },
+							{ name: "IP", network: "Story Testnet" },
+							{ name: "LUMIA", network: "LUMIA Testnet" },
 						].map((token, index) => (
 							<Card
 								key={index}
-								className="w-full sm:w-[280px] bg-gradient-to-br from-cyan-800 to-blue-800 border-2 border-cyan-500 hover:border-cyan-400 text-white transition-all duration-300 transform hover:scale-105 rounded-xl"
+								className="w-full sm:w-[240px] bg-gradient-to-br from-cyan-800 to-blue-800 border-2 border-cyan-500 hover:border-cyan-400 text-white transition-all duration-300 transform hover:scale-105 rounded-xl"
 							>
 								<CardContent className="p-6 flex flex-col items-center">
 									<HandCoins className="w-16 h-16 mb-4 text-purple-400" />
@@ -39,13 +42,12 @@ const Bundles = forwardRef<HTMLElement>((props, ref) => {
 									</h3>
 
 									<p className="text-lg mb-4 text-gray-300 text-center">
-										Get {token.name} instantly with no
-										hassle.
+										{token.network}
 									</p>
 
 									<p className="text-sm mb-4 text-gray-400 italic text-center">
-										No CAPTCHAs. No social media logins.
-										Just testnet tokens, fast.
+										Receive testnet tokens instantly with no
+										hassle.
 									</p>
 
 									<Link
