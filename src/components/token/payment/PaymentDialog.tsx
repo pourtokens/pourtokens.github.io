@@ -194,7 +194,7 @@ const PaymentDialog = ({
 						/>
 						<small className="text-white/60">
 							Please send the convenience fee to the destination
-							address.
+							address on {transactionNetwork}.
 						</small>
 					</div>
 				</div>

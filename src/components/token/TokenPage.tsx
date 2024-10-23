@@ -128,8 +128,12 @@ const TokenPage = () => {
 
 	const [requestTokenAmount, setRequestTokenAmount] = useState<number>(0);
 	const [transactionNetwork, setTransactionNetwork] =
-		useState<TransactionNetwork>(paymentNetworkOptions[0].network as TransactionNetwork);
-	const [paymentCurrency, setPaymentCurrency] = useState<string>("USDC");
+		useState<TransactionNetwork>(
+			paymentNetworkOptions[0].network as TransactionNetwork
+		);
+	const [paymentCurrency, setPaymentCurrency] = useState<string>(
+		paymentNetworkOptions[0].paymentOptions[0].token
+	);
 	const [isAccepted, setIsAccepted] = useState<boolean>(false);
 
 	const navigate = useNavigate();
