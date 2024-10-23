@@ -164,7 +164,7 @@ const TokenPage = () => {
 					"HoleskyETH is the main token of the Holesky testnet, a new Ethereum public testing environment designed for technical experimentation with Ethereum's infrastructure and protocol upgrades. Launched in September 2023, Holesky aims to address the limitations of its predecessor, the Goerli testnet, which suffered from a shortage of testnet tokens and rising costs. Holesky features a significantly larger fixed supply of 1.6 billion tokens, ensuring ample resources for developers. Validators can stake HoleskyETH to participate in network validation, and the testnet supports 1.4 million validators, facilitating testing for Ethereum’s future developments, including the upcoming Dencun upgrade.",
 				label: "holesky-eth",
 				maxAmount: 10,
-				minAmount: 1,
+				minAmount: 2,
 				network: "Holesky Testnet",
 			},
 			{
