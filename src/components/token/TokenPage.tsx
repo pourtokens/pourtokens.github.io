@@ -2,15 +2,15 @@ import { useEffect, useMemo, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Check, Forward, Info, Network, Package, Wallet } from "lucide-react";
 
-import { Card, CardContent } from "../ui/card";
+import { Card, CardContent } from "../../components/ui/card";
 import {
 	Tooltip,
 	TooltipContent,
 	TooltipProvider,
 	TooltipTrigger,
-} from "../ui/tooltip";
-import { Checkbox } from "../ui/checkbox";
-import { Label } from "../ui/label";
+} from "../../components/ui/tooltip";
+import { Checkbox } from "../../components/ui/checkbox";
+import { Label } from "../../components/ui/label";
 import {
 	Select,
 	SelectContent,
@@ -18,17 +18,22 @@ import {
 	SelectItem,
 	SelectTrigger,
 	SelectValue,
-	SelectLabel,
-} from "../ui/select";
-import { Slider } from "../ui/slider";
-import { ToggleGroup, ToggleGroupItem } from "../ui/toggle-group";
+} from "../../components/ui/select";
+import { Slider } from "../../components/ui/slider";
+import { ToggleGroup, ToggleGroupItem } from "../../components/ui/toggle-group";
 
 import Navbar from "../../components/header/Navbar";
 import PaymentDialog from "./payment/PaymentDialog";
 
 type TransactionToken = "USDC" | "USDT";
 
-type TransactionNetwork = "erc20" | "arbitrum-one" | "base";
+type TransactionNetwork =
+	| "erc20"
+	| "arbitrum-one"
+	| "base"
+	| "bsc"
+	| "mode"
+	| "optimism";
 
 type TokenInfo = {
 	[key: string]: {

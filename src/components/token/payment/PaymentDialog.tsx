@@ -15,7 +15,13 @@ import { Input } from "../../../components/ui/input";
 import { Label } from "../../../components/ui/label";
 import { toast } from "sonner";
 
-type TransactionNetwork = "erc20" | "arbitrum-one" | "base";
+type TransactionNetwork =
+	| "erc20"
+	| "arbitrum-one"
+	| "base"
+	| "bsc"
+	| "mode"
+	| "optimism";
 
 interface PaymentDialogProps {
 	transactionToken: "USDC" | "USDT";
@@ -171,28 +177,26 @@ const PaymentDialog = ({
 						/>
 					</div>
 
-					{depositAddress && transactionNetwork && (
-						<div className="flex flex-col items-start gap-4">
-							<Label
-								htmlFor="destination_address"
-								className="text-right"
-							>
-								Destination Address
-							</Label>
+					<div className="flex flex-col items-start gap-4">
+						<Label
+							htmlFor="destination_address"
+							className="text-right"
+						>
+							Destination Address
+						</Label>
 
-							<Input
-								id="destination_address"
-								defaultValue={PAYMENT_ADDRESS}
-								className="text-gray-600"
-								onMouseDown={copyDepositAddress}
-								readOnly
-							/>
-							<small className="text-white/60">
-								Please send the convenience fee to the
-								destination address.
-							</small>
-						</div>
-					)}
+						<Input
+							id="destination_address"
+							defaultValue={PAYMENT_ADDRESS}
+							className="text-gray-600"
+							onMouseDown={copyDepositAddress}
+							readOnly
+						/>
+						<small className="text-white/60">
+							Please send the convenience fee to the destination
+							address.
+						</small>
+					</div>
 				</div>
 
 				<DialogFooter>
