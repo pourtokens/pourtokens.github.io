@@ -40,6 +40,7 @@ type TokenInfo = {
 	description: string;
 	label: string;
 	maxAmount: number;
+	minAmount: number;
 	network: string;
 	steps?: number;
 }[];
@@ -162,6 +163,7 @@ const TokenPage = () => {
 					"HoleskyETH is the main token of the Holesky testnet, a new Ethereum public testing environment designed for technical experimentation with Ethereum's infrastructure and protocol upgrades. Launched in September 2023, Holesky aims to address the limitations of its predecessor, the Goerli testnet, which suffered from a shortage of testnet tokens and rising costs. Holesky features a significantly larger fixed supply of 1.6 billion tokens, ensuring ample resources for developers. Validators can stake HoleskyETH to participate in network validation, and the testnet supports 1.4 million validators, facilitating testing for Ethereum’s future developments, including the upcoming Dencun upgrade.",
 				label: "holesky-eth",
 				maxAmount: 10,
+				minAmount: 1,
 				network: "Holesky Testnet",
 			},
 			{
@@ -169,7 +171,9 @@ const TokenPage = () => {
 				description:
 					"SepoliaETH is the native token of the Sepolia Testnet, a testing environment for Ethereum developers. Sepolia, which has transitioned from Proof of Work to Proof of Stake like the Ethereum mainnet, allows developers to deploy and test smart contracts in a safe, low-stakes environment. SepoliaETH is used to pay for gas fees on the network, enabling transactions and contract executions. To make the development process smoother, Sepolia offers a faucet service that provides SepoliaETH for free, ensuring developers can run their decentralized applications (dApps) without financial risk.",
 				label: "sepolia-eth",
-				maxAmount: 20,
+				maxAmount: 1,
+				minAmount: 0.2,
+				steps: 0.1,
 				network: "Sepolia Testnet",
 			},
 			{
@@ -177,16 +181,17 @@ const TokenPage = () => {
 				description:
 					"LUMIA is a next-generation blockchain platform designed to support the entire life cycle of real-world assets (RWAs), from tokenization to their integration into decentralized finance (DeFi) and Web3. Unlike other projects that only focus on tokenizing RWAs, LUMIA aims to bridge billions of dollars in liquidity by connecting tokenized assets to millions of DeFi traders. As part of its ecosystem, LUMIA also offers exclusive airdrops, with details for the Season 1 airdrop coming soon, providing early participants additional rewards.",
 				maxAmount: 100,
+				minAmount: 20,
 				label: "lumia",
 				network: "Lumia Testnet",
 				steps: 5,
 			},
 			{
 				name: "BERA",
-
 				description:
 					"BERA is the native token of Berachain, a high-performance EVM-identical Layer 1 blockchain that uses Proof-of-Liquidity (PoL) as its consensus mechanism. PoL rewards ecosystem liquidity, encouraging efficient trading, price stability, and network growth while securing the chain. Berachain is fully compatible with Ethereum's infrastructure, as it supports unmodified execution clients like Geth and Erigon, allowing it to adopt the latest EVM upgrades seamlessly. The BERA token plays a central role in maintaining the network, participating in its liquidity-driven consensus mechanism, and interacting with its native decentralized applications (dApps) like BEX and Bend.",
-				maxAmount: 10,
+				maxAmount: 15,
+				minAmount: 4,
 				label: "bera",
 				network: "Berachain bArtio",
 			},
@@ -194,7 +199,8 @@ const TokenPage = () => {
 				name: "IP",
 				description:
 					'IP, the token within the Story Network, represents "Intellectual Property" on the blockchain and transforms the way IP is licensed, remixed, and monetized. By creating "IP Assets" (tokenized representations of intellectual property) on a purpose-built layer 1 blockchain, Story automates complex legal processes typically handled by lawyers. IP holders set programmable licensing terms, enforced by smart contracts, allowing creators to seamlessly collaborate and generate revenue from their works. The Proof-of-Creativity Protocol ensures transparent, decentralized management of IP, while the Programmable IP License bridges the blockchain and legal world, enabling real-world enforcement.',
-				maxAmount: 10,
+				maxAmount: 15,
+				minAmount: 4,
 				label: "ip",
 				network: "Story Testnet",
 			},
@@ -278,7 +284,7 @@ const TokenPage = () => {
 
 									<Slider
 										id="token-amount"
-										min={0}
+										min={token?.minAmount}
 										max={token?.maxAmount}
 										value={[requestTokenAmount]}
 										step={token?.steps ? token.steps : 1}
@@ -288,7 +294,11 @@ const TokenPage = () => {
 										className="w-full"
 									/>
 
-									<div className="flex justify-end mt-2 text-xs text-white/60">
+									<div className="flex justify-between mt-2 text-xs text-white/60">
+										<span>
+											Min: {token?.minAmount}{" "}
+											{token?.name}
+										</span>
 										<span>
 											Max: {token?.maxAmount}{" "}
 											{token?.name}
