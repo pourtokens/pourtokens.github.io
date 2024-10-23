@@ -156,30 +156,39 @@ const TokenPage = () => {
 
 	const tokenInfo: TokenInfo = useMemo(
 		() => ({
+			holeskyEth: {
+				name: "holeskyETH",
+				description:
+					"HoleskyETH is the main token of the Holesky testnet, a new Ethereum public testing environment designed for technical experimentation with Ethereum's infrastructure and protocol upgrades. Launched in September 2023, Holesky aims to address the limitations of its predecessor, the Goerli testnet, which suffered from a shortage of testnet tokens and rising costs. Holesky features a significantly larger fixed supply of 1.6 billion tokens, ensuring ample resources for developers. Validators can stake HoleskyETH to participate in network validation, and the testnet supports 1.4 million validators, facilitating testing for Ethereum’s future developments, including the upcoming Dencun upgrade.",
+				network: "Holesky Testnet",
+				maxAmount: 10,
+			},
+			sepoliaEth: {
+				name: "sepoliaETH",
+				description:
+					"SepoliaETH is the native token of the Sepolia Testnet, a testing environment for Ethereum developers. Sepolia, which has transitioned from Proof of Work to Proof of Stake like the Ethereum mainnet, allows developers to deploy and test smart contracts in a safe, low-stakes environment. SepoliaETH is used to pay for gas fees on the network, enabling transactions and contract executions. To make the development process smoother, Sepolia offers a faucet service that provides SepoliaETH for free, ensuring developers can run their decentralized applications (dApps) without financial risk.",
+				network: "Sepolia Testnet",
+				maxAmount: 20,
+			},
 			lumia: {
 				name: "LUMIA",
 				description:
-					"Lumia is a Layer 2 blockchain platform built on the Polygon Chain Development Kit (CDK), designed to integrate Real-World Assets (RWAs) into decentralized finance (DeFi). It enhances liquidity and capital efficiency through its native module, Lumia Stream, and is equipped for scalability and interoperability with solutions like NearDA and Polygon AggLayer. Lumia ensures security via a decentralized sequencer network and prioritizes user experience with features like Account Abstraction and PolygonID. It also offers advanced yield optimization strategies and is positioned as a leader in the tokenized RWA industry.",
+					"LUMIA is a next-generation blockchain platform designed to support the entire life cycle of real-world assets (RWAs), from tokenization to their integration into decentralized finance (DeFi) and Web3. Unlike other projects that only focus on tokenizing RWAs, LUMIA aims to bridge billions of dollars in liquidity by connecting tokenized assets to millions of DeFi traders. As part of its ecosystem, LUMIA also offers exclusive airdrops, with details for the Season 1 airdrop coming soon, providing early participants additional rewards.",
 				network: "Lumia Testnet",
 				maxAmount: 100,
 			},
 			bera: {
 				name: "BERA",
 				description:
-					"Berachain is a Layer-1 blockchain fully compatible with the Ethereum Virtual Machine (EVM), designed to enhance decentralized finance (DeFi) applications. It stands out with its Proof of Liquidity (PoL) consensus mechanism, which rewards stakers for providing liquidity, thereby improving security and stability. The BeaconKit Framework, built using the Cosmos SDK, allows for modular EVM-compatible development, supporting both Layer-1 and Layer-2 solutions. Originally an NFT project, Berachain has evolved into a platform aimed at defragmenting liquidity, incentivizing DeFi development, and offering high accessibility for Ethereum-based projects.",
+					"BERA is the native token of Berachain, a high-performance EVM-identical Layer 1 blockchain that uses Proof-of-Liquidity (PoL) as its consensus mechanism. PoL rewards ecosystem liquidity, encouraging efficient trading, price stability, and network growth while securing the chain. Berachain is fully compatible with Ethereum's infrastructure, as it supports unmodified execution clients like Geth and Erigon, allowing it to adopt the latest EVM upgrades seamlessly. The BERA token plays a central role in maintaining the network, participating in its liquidity-driven consensus mechanism, and interacting with its native decentralized applications (dApps) like BEX and Bend.",
 				network: "Berachain bArtio",
 				maxAmount: 10,
 			},
-			story: {
-				name: "STORY",
-				description: "STORY description",
+			ip: {
+				name: "IP",
+				description:
+					'IP, the token within the Story Network, represents "Intellectual Property" on the blockchain and transforms the way IP is licensed, remixed, and monetized. By creating "IP Assets" (tokenized representations of intellectual property) on a purpose-built layer 1 blockchain, Story automates complex legal processes typically handled by lawyers. IP holders set programmable licensing terms, enforced by smart contracts, allowing creators to seamlessly collaborate and generate revenue from their works. The Proof-of-Creativity Protocol ensures transparent, decentralized management of IP, while the Programmable IP License bridges the blockchain and legal world, enabling real-world enforcement.',
 				network: "Story Testnet",
-				maxAmount: 10,
-			},
-			sepoliaEth: {
-				name: "sepoliaETH",
-				description: "sepoliaETH description",
-				network: "Sepolia Testnet",
 				maxAmount: 10,
 			},
 		}),
