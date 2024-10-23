@@ -3,11 +3,6 @@ import { useNavigate, useParams } from "react-router-dom";
 import { Check, Forward, Info, Network, Package, Wallet } from "lucide-react";
 
 import { Card, CardContent } from "../ui/card";
-import { Slider } from "../ui/slider";
-import { ToggleGroup, ToggleGroupItem } from "../ui/toggle-group";
-
-import Navbar from "../../components/header/Navbar";
-import PaymentDialog from "./payment/PaymentDialog";
 import {
 	Tooltip,
 	TooltipContent,
@@ -15,8 +10,25 @@ import {
 	TooltipTrigger,
 } from "../ui/tooltip";
 import { Checkbox } from "../ui/checkbox";
+import { Label } from "../ui/label";
+import {
+	Select,
+	SelectContent,
+	SelectGroup,
+	SelectItem,
+	SelectTrigger,
+	SelectValue,
+	SelectLabel,
+} from "../ui/select";
+import { Slider } from "../ui/slider";
+import { ToggleGroup, ToggleGroupItem } from "../ui/toggle-group";
+
+import Navbar from "../../components/header/Navbar";
+import PaymentDialog from "./payment/PaymentDialog";
 
 type TransactionToken = "USDC" | "USDT";
+
+type TransactionNetwork = "erc20" | "arbitrum-one" | "base";
 
 type TokenInfo = {
 	[key: string]: {
@@ -31,6 +43,8 @@ const TokenPage = () => {
 	const { tokenName } = useParams<{ tokenName: string }>();
 
 	const [requestTokenAmount, setRequestTokenAmount] = useState<number>(0);
+	const [transactionNetwork, setTransactionNetwork] =
+		useState<TransactionNetwork | null>(null);
 	const [paymentCurrency, setPaymentCurrency] = useState<string>("USDC");
 	const [isAccepted, setIsAccepted] = useState<boolean>(false);
 
@@ -38,6 +52,10 @@ const TokenPage = () => {
 
 	const handleRequestAmountChange = (value: any[]) => {
 		setRequestTokenAmount(value[0]);
+	};
+
+	const handleSelect = (value: TransactionNetwork) => {
+		setTransactionNetwork(value);
 	};
 
 	const handlePaymentCurrencyChange = (value: string) => {
@@ -204,9 +222,55 @@ const TokenPage = () => {
 								</div>
 
 								<div className="mb-6">
+									<Label className="block text-sm font-medium text-gray-300 mb-2">
+										Fee Network
+									</Label>
+
+									<Select
+										onValueChange={handleSelect}
+										defaultValue={
+											transactionNetwork as string
+										}
+									>
+										<SelectTrigger className="text-gray-800">
+											<SelectValue placeholder="Select a network" />
+										</SelectTrigger>
+
+										<SelectContent>
+											<SelectGroup>
+												<SelectItem value="erc20">
+													ERC20
+												</SelectItem>
+
+												<SelectItem value="arbitrum-one">
+													Arbitrum One
+												</SelectItem>
+
+												<SelectItem value="base">
+													Base
+												</SelectItem>
+
+												<SelectItem value="bsc">
+													Binance Smart Chain
+												</SelectItem>
+
+												<SelectItem value="mode">
+													Mode
+												</SelectItem>
+
+												<SelectItem value="optimism">
+													Optimism
+												</SelectItem>
+											</SelectGroup>
+										</SelectContent>
+									</Select>
+								</div>
+
+								<div className="mb-6">
 									<label className="block text-sm font-medium text-gray-300 mb-2">
 										Fee Payment Coin
 									</label>
+
 									<ToggleGroup
 										type="single"
 										value={paymentCurrency}
@@ -251,6 +315,9 @@ const TokenPage = () => {
 								<PaymentDialog
 									transactionToken={
 										paymentCurrency as TransactionToken
+									}
+									transactionNetwork={
+										transactionNetwork as TransactionNetwork
 									}
 									testnetNetwork={token?.network as string}
 									requestedToken={token?.name as string}

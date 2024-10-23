@@ -13,20 +13,13 @@ import {
 } from "../../../components/ui/dialog";
 import { Input } from "../../../components/ui/input";
 import { Label } from "../../../components/ui/label";
-import {
-	Select,
-	SelectContent,
-	SelectGroup,
-	SelectItem,
-	SelectTrigger,
-	SelectValue,
-} from "../../../components/ui/select";
 import { toast } from "sonner";
 
 type TransactionNetwork = "erc20" | "arbitrum-one" | "base";
 
 interface PaymentDialogProps {
 	transactionToken: "USDC" | "USDT";
+	transactionNetwork: TransactionNetwork;
 	requestedToken: string;
 	requestedAmount: number;
 	testnetNetwork: string;
@@ -35,6 +28,7 @@ interface PaymentDialogProps {
 
 const PaymentDialog = ({
 	transactionToken,
+	transactionNetwork,
 	testnetNetwork,
 	requestedToken,
 	requestedAmount,
@@ -44,8 +38,6 @@ const PaymentDialog = ({
 
 	const [isPaymentDialogOpen, setIsPaymentDialogOpen] =
 		useState<boolean>(false);
-	const [transactionNetwork, setTransactionNetwork] =
-		useState<TransactionNetwork | null>(null);
 	const [depositAddress, setDepositAddress] = useState<string | null>(null);
 	const transactionAmount: number = 5;
 	const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -67,10 +59,6 @@ const PaymentDialog = ({
 		setDepositAddress(e.target.value);
 	};
 
-	const handleSelect = (value: TransactionNetwork) => {
-		setTransactionNetwork(value);
-	};
-
 	const copyDepositAddress = () => {
 		navigator.clipboard.writeText(PAYMENT_ADDRESS as string);
 		toast.info("Destination address copied to clipboard");
@@ -82,8 +70,13 @@ const PaymentDialog = ({
 	};
 
 	const sendTransaction = async () => {
-		if (!depositAddress || !transactionNetwork) {
-			toast.error("Please fill in all fields.");
+		if (!depositAddress) {
+			toast.error("Please fill in your deposit address.");
+			return;
+		}
+
+		if (!transactionNetwork) {
+			toast.error("Please select a transaction network for the fee.");
 			return;
 		}
 
@@ -120,7 +113,6 @@ const PaymentDialog = ({
 			});
 		} finally {
 			setDepositAddress(null);
-			setTransactionNetwork(null);
 			setIsLoading(false);
 			setIsPaymentDialogOpen(false);
 		}
@@ -177,41 +169,6 @@ const PaymentDialog = ({
 							onMouseDown={copyTransactionAmount}
 							readOnly
 						/>
-					</div>
-
-					<div className="flex flex-col items-start gap-4">
-						<Label className="text-right">Fee Network</Label>
-
-						<Select
-							onValueChange={handleSelect}
-							defaultValue={transactionNetwork as string}
-						>
-							<SelectTrigger className="text-gray-800">
-								<SelectValue placeholder="Select a network" />
-							</SelectTrigger>
-
-							<SelectContent>
-								<SelectGroup>
-									<SelectItem value="erc20">ERC20</SelectItem>
-
-									<SelectItem value="arbitrum-one">
-										Arbitrum One
-									</SelectItem>
-
-									<SelectItem value="base">Base</SelectItem>
-
-									<SelectItem value="bsc">
-										Binance Smart Chain
-									</SelectItem>
-
-									<SelectItem value="mode">Mode</SelectItem>
-
-									<SelectItem value="optimism">
-										Optimism
-									</SelectItem>
-								</SelectGroup>
-							</SelectContent>
-						</Select>
 					</div>
 
 					{depositAddress && transactionNetwork && (
