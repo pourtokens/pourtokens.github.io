@@ -33,7 +33,7 @@ type TransactionNetwork =
 	| "base"
 	| "bsc"
 	| "mode"
-	| "optimism";
+	| "op";
 
 type TokenInfo = {
 	[key: string]: {
@@ -44,12 +44,91 @@ type TokenInfo = {
 	};
 };
 
+const paymentNetworkOptions = [
+	{
+		network: "erc20",
+		label: "ERC20",
+		paymentOptions: [
+			{
+				token: "USDC",
+				address: process.env.REACT_APP_ERC_20_ADDRESS,
+			},
+			{
+				token: "USDT",
+				address: process.env.REACT_APP_ERC_20_ADDRESS,
+			},
+		],
+	},
+	{
+		network: "arbitrum-one",
+		label: "Arbitrum One",
+		paymentOptions: [
+			{
+				token: "USDC",
+				address: process.env.REACT_APP_ERC_20_ADDRESS,
+			},
+			{
+				token: "USDT",
+				address: process.env.REACT_APP_ERC_20_ADDRESS,
+			},
+		],
+	},
+	{
+		network: "base",
+		label: "Base",
+		paymentOptions: [
+			{
+				token: "USDC",
+				address: process.env.REACT_APP_ERC_20_ADDRESS,
+			},
+		],
+	},
+	{
+		network: "bsc",
+		label: "Binance Smart Chain",
+		paymentOptions: [
+			{
+				token: "USDC",
+				address: process.env.REACT_APP_ERC_20_ADDRESS,
+			},
+		],
+	},
+	{
+		network: "mode",
+		label: "Mode",
+		paymentOptions: [
+			{
+				token: "USDC",
+				address: process.env.REACT_APP_ERC_20_ADDRESS,
+			},
+			{
+				token: "USDT",
+				address: process.env.REACT_APP_ERC_20_ADDRESS,
+			},
+		],
+	},
+	{
+		network: "op",
+		label: "Optimism",
+		paymentOptions: [
+			{
+				token: "USDC",
+				address: process.env.REACT_APP_ERC_20_ADDRESS,
+			},
+			{
+				token: "USDT",
+				address: process.env.REACT_APP_ERC_20_ADDRESS,
+			},
+		],
+	},
+];
+
 const TokenPage = () => {
 	const { tokenName } = useParams<{ tokenName: string }>();
 
 	const [requestTokenAmount, setRequestTokenAmount] = useState<number>(0);
 	const [transactionNetwork, setTransactionNetwork] =
-		useState<TransactionNetwork | null>(null);
+		useState<TransactionNetwork>(paymentNetworkOptions[0].network as TransactionNetwork);
 	const [paymentCurrency, setPaymentCurrency] = useState<string>("USDC");
 	const [isAccepted, setIsAccepted] = useState<boolean>(false);
 
@@ -243,29 +322,20 @@ const TokenPage = () => {
 
 										<SelectContent>
 											<SelectGroup>
-												<SelectItem value="erc20">
-													ERC20
-												</SelectItem>
-
-												<SelectItem value="arbitrum-one">
-													Arbitrum One
-												</SelectItem>
-
-												<SelectItem value="base">
-													Base
-												</SelectItem>
-
-												<SelectItem value="bsc">
-													Binance Smart Chain
-												</SelectItem>
-
-												<SelectItem value="mode">
-													Mode
-												</SelectItem>
-
-												<SelectItem value="optimism">
-													Optimism
-												</SelectItem>
+												{paymentNetworkOptions.map(
+													(network) => (
+														<SelectItem
+															key={
+																network.network
+															}
+															value={
+																network.network
+															}
+														>
+															{network.label}
+														</SelectItem>
+													)
+												)}
 											</SelectGroup>
 										</SelectContent>
 									</Select>
@@ -284,20 +354,22 @@ const TokenPage = () => {
 										}
 										className="justify-start"
 									>
-										<ToggleGroupItem
-											value="USDC"
-											aria-label="Pay with USDC"
-											className="data-[state=on]:bg-cyan-500"
-										>
-											USDC
-										</ToggleGroupItem>
-										<ToggleGroupItem
-											value="USDT"
-											aria-label="Pay with USDT"
-											className="data-[state=on]:bg-cyan-500"
-										>
-											USDT
-										</ToggleGroupItem>
+										{paymentNetworkOptions
+											.find(
+												(network) =>
+													network.network ===
+													transactionNetwork
+											)
+											?.paymentOptions.map((option) => (
+												<ToggleGroupItem
+													key={option.token}
+													value={option.token}
+													aria-label={`Pay with ${option.token}`}
+													className="data-[state=on]:bg-cyan-500"
+												>
+													{option.token}
+												</ToggleGroupItem>
+											))}
 									</ToggleGroup>
 								</div>
 

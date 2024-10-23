@@ -21,7 +21,7 @@ type TransactionNetwork =
 	| "base"
 	| "bsc"
 	| "mode"
-	| "optimism";
+	| "op";
 
 interface PaymentDialogProps {
 	transactionToken: "USDC" | "USDT";
