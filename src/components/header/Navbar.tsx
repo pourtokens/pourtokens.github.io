@@ -18,14 +18,15 @@ const Navbar = () => {
 				>
 					<span className="gradient">Pour Tokens</span>
 				</Link>
-				<div className="hidden md:flex space-x-8">
+
+				{/* <div className="hidden md:flex space-x-8">
 					<Link
 						to="/tokens"
 						className="text-white hover:bg-gradient-to-l from-[#cc25b3] to-[#418dff] hover:text-transparent hover:bg-clip-text transition-colors"
 					>
 						Tokens
 					</Link>
-				</div>
+				</div> */}
 
 				<DropdownMenu>
 					<DropdownMenuTrigger asChild>
