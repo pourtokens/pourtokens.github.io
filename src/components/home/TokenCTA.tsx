@@ -5,7 +5,7 @@ interface CTAProps {
 	tokenRef: React.RefObject<HTMLDivElement>;
 }
 
-const CTA: React.FC<CTAProps> = ({ tokenRef }) => {
+const TokenCTA: React.FC<CTAProps> = ({ tokenRef }) => {
 	return (
 		<section className="bg-gradient-to-b from-blue-900 to-cyan-900 text-white py-20">
 			<div className="container mx-auto px-4">
@@ -53,4 +53,4 @@ const CTA: React.FC<CTAProps> = ({ tokenRef }) => {
 	);
 };
 
-export default CTA;
+export default TokenCTA;

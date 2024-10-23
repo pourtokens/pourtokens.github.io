@@ -1,0 +1,22 @@
+[
+	{
+		"icon": "Package",
+		"text": "Pick your token amount and fee payment option"
+	},
+	{
+		"icon": "Wallet",
+		"text": "Enter a wallet address where you want your tokens"
+	},
+	{
+		"icon": "Network",
+		"text": "Select a network for fee payment"
+	},
+	{
+		"icon": "Forward",
+		"text": "Send convenience fee to destination address"
+	},
+	{
+		"icon": "Check",
+		"text": "Get a fresh pour of testnet tokens"
+	}
+]

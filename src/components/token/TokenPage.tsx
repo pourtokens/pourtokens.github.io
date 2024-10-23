@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { Check, Forward, Info, Network, Package, Wallet } from "lucide-react";
+import { Info } from "lucide-react";
 
 import { Card, CardContent } from "../../components/ui/card";
 import {
@@ -24,6 +24,7 @@ import { ToggleGroup, ToggleGroupItem } from "../../components/ui/toggle-group";
 
 import Navbar from "../../components/header/Navbar";
 import PaymentDialog from "./payment/PaymentDialog";
+import HowItWorks from "../home/HowItWorks";
 
 type TransactionToken = "USDC" | "USDT";
 
@@ -445,49 +446,7 @@ const TokenPage = () => {
 				</div>
 			</div>
 
-			<section className="bg-gradient-to-b from-cyan-900 to-blue-900 text-white py-20 mt-12 rounded-lg">
-				<div className="container mx-auto px-4">
-					<h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">
-						How It Works
-					</h2>
-					<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
-						{[
-							{
-								icon: Package,
-								text: "Pick your token amount and fee payment option",
-							},
-							{
-								icon: Wallet,
-								text: "Enter a wallet address where you want your tokens",
-							},
-							{
-								icon: Network,
-								text: "Select a network for fee payment",
-							},
-							{
-								icon: Forward,
-								text: "Send convenience fee to destination address",
-							},
-							{
-								icon: Check,
-								text: "Get a fresh pour of testnet tokens",
-							},
-						].map((step, index) => (
-							<div
-								key={index}
-								className="flex flex-col items-center text-center"
-							>
-								<div className="w-16 h-16 rounded-full bg-gradient-to-r from-cyan-500 to-blue-500 flex items-center justify-center mb-4">
-									<step.icon className="w-8 h-8 text-white" />
-								</div>
-								<p className="text-lg font-semibold">
-									{index + 1}. {step.text}
-								</p>
-							</div>
-						))}
-					</div>
-				</div>
-			</section>
+			<HowItWorks />
 		</>
 	);
 };

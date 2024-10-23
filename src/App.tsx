@@ -1,8 +1,10 @@
-import Header from "./components/header/Header";
-import Bundles from "./components/home/Bundles";
-import Offers from "./components/home/Offers";
-import CTA from "./components/home/CTA";
 import { useRef } from "react";
+
+import Header from "./components/header/Header";
+import TokenOffers from "./components/home/TokenOffers";
+import HowItWorks from "./components/home/HowItWorks";
+import WhatWeOffer from "./components/home/WhatWeOffer";
+import TokenCTA from "./components/home/TokenCTA";
 
 const App = () => {
 	const tokenRef = useRef<HTMLDivElement>(null);
@@ -10,9 +12,10 @@ const App = () => {
 	return (
 		<div className="flex-grow">
 			<Header tokenRef={tokenRef} />
-			<Offers />
-			<Bundles ref={tokenRef} />
-			<CTA tokenRef={tokenRef} />
+			<WhatWeOffer />
+			<TokenOffers ref={tokenRef} />
+			<HowItWorks />
+			<TokenCTA tokenRef={tokenRef} />
 		</div>
 	);
 };

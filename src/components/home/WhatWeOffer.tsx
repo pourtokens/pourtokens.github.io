@@ -1,6 +1,6 @@
 import { UserPlus, Clock, Waves } from "lucide-react";
 
-const Offers = () => {
+const WhatWeOffer = () => {
 	return (
 		<>
 			<section className="text-white py-20">
@@ -96,4 +96,4 @@ const Offers = () => {
 	);
 };
 
-export default Offers;
+export default WhatWeOffer;
