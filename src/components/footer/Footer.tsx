@@ -1,49 +1,38 @@
-import { Droplet, MessageCircle } from "lucide-react";
+import { Link } from "react-router-dom";
+import { Send } from "lucide-react";
 
 const Footer = () => {
 	return (
-		<footer className="bg-blue-800 text-white py-8 mt-12">
+		<footer className="bg-blue-900 text-white py-12">
 			<div className="container mx-auto px-4">
 				<div className="flex flex-col md:flex-row justify-between items-center">
 					<div className="mb-4 md:mb-0">
-						<h3 className="text-xl font-bold flex items-center">
-							<Droplet className="w-6 h-6 mr-2" />
-							Pour Tokens
-						</h3>
-						<p className="mt-2 text-gray-400">
-							Your go-to crypto test token provider
+						<Link to={"/"} className="flex items-center">
+							<h2 className="text-2xl font-bold">Pour Tokens</h2>
+						</Link>
+
+						<p className="text-gray-300">
+							The faucet that keeps on pouring
 						</p>
 					</div>
-					<div className="flex space-x-6">
+
+					<div className="flex items-center">
+						<p className="mr-4">Need help?</p>
+
 						<a
-							href="https://t.me/pourtokens_support_bot"
+							href="https://t.me/pourtokens_help_bot"
 							target="_blank"
 							rel="noopener noreferrer"
-							className="hover:text-blue-400 transition-colors"
-							title="Telegram support"
+							className="flex items-center bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white font-bold py-2 px-4 rounded-full transition duration-300 ease-in-out"
 						>
-							<MessageCircle className="w-6 h-6" />
-							<span className="sr-only">Telegram support</span>
+							Contact Support
+							<Send className="ml-2 h-5 w-5" />
 						</a>
-						{/* <a
-							href="https://twitter.com/pourtokens"
-							target="_blank"
-							rel="noopener noreferrer"
-							className="hover:text-blue-400 transition-colors"
-						>
-							<Twitter className="w-6 h-6" />
-							<span className="sr-only">Twitter</span>
-						</a> */}
-						{/* <a
-							href="https://github.com/pourtokens"
-							target="_blank"
-							rel="noopener noreferrer"
-							className="hover:text-blue-400 transition-colors"
-						>
-							<Github className="w-6 h-6" />
-							<span className="sr-only">GitHub</span>
-						</a> */}
 					</div>
+				</div>
+
+				<div className="mt-8 text-center text-gray-400">
+					<p>&copy; 2024 Pour Tokens. All rights reserved.</p>
 				</div>
 			</div>
 		</footer>

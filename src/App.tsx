@@ -1,30 +1,21 @@
-import Bundles from "./components/about/Bundles";
-import Offers from "./components/about/Offers";
+import { useRef } from "react";
+
+import Header from "./components/header/Header";
+import TokenOffers from "./components/home/TokenOffers";
+import HowItWorks from "./components/home/HowItWorks";
+import WhatWeOffer from "./components/home/WhatWeOffer";
+import TokenCTA from "./components/home/TokenCTA";
 
 const App = () => {
-	return (
-		<div className="container mx-auto px-4 py-6 flex-grow max-w-5xl">
-			<Offers />
-			<Bundles />
+	const tokenRef = useRef<HTMLDivElement>(null);
 
-			<section className="mb-12">
-				<h2 className="text-3xl font-bold mb-4">
-					Say Goodbye to Faucet Frustration
-				</h2>
-				<p className="mb-4">
-					We've all been there – clicking endlessly on faucet buttons,
-					waiting for timers to run out, and still receiving barely
-					enough tokens to do anything meaningful.
-				</p>
-				<p className="mb-4">
-					Pour Tokens was built to change all of that. Whether you're
-					a developer, airdrop hunter, or just exploring blockchain,
-					we've made it fast and simple for you to get what you need.
-				</p>
-				<p className="text-xl font-semibold">
-					Ready for your token pour? Let's go!
-				</p>
-			</section>
+	return (
+		<div className="flex-grow">
+			<Header tokenRef={tokenRef} />
+			<WhatWeOffer />
+			<TokenOffers ref={tokenRef} />
+			<HowItWorks />
+			<TokenCTA tokenRef={tokenRef} />
 		</div>
 	);
 };
