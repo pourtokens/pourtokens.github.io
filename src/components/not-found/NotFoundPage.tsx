@@ -3,7 +3,7 @@ import { Button } from "../ui/button";
 
 const NotFoundPage = () => {
 	return (
-		<div className="flex flex-col justify-center items-center gap-6 text-white">
+		<div className="flex flex-col justify-center items-center gap-6 text-neutral-200">
 			<div className="mx-auto px-4 py-16 text-center">
 				<h1 className="text-3xl font-bold mb-6">Not Found</h1>
 				<p className="mb-6">

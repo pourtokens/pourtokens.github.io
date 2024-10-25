@@ -13,7 +13,7 @@ const Header: React.FC<HeaderProps> = ({ tokenRef }) => {
 	const [isVideoOpen, setIsVideoOpen] = useState(false);
 
 	return (
-		<header className="min-h-dvh bg-gradient-to-br from-indigo-900 via-purple-800 to-pink-700 text-white flex justify-center items-center overflow-hidden">
+		<header className="min-h-dvh bg-gradient-to-br from-indigo-900 via-purple-800 to-pink-700 text-neutral-200 flex justify-center items-center overflow-hidden">
 			<div className="container mx-auto px-10 py-20 flex flex-col lg:flex-row items-center justify-center gap-x-12">
 				<div className="lg:w-1/2 space-y-8">
 					<h1 className="text-5xl md:text-6xl font-extrabold leading-tight">
@@ -45,7 +45,7 @@ const Header: React.FC<HeaderProps> = ({ tokenRef }) => {
 							<DialogTrigger asChild>
 								<Button
 									variant="link"
-									className="text-white text-md md:text-lg hover:text-purple-200 h-0 py-3 px-0"
+									className="text-neutral-200 text-md md:text-lg hover:text-purple-200 h-0 py-3 px-0"
 								>
 									token faucets{" "}
 									<PlayCircle
