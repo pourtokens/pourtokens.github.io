@@ -231,7 +231,7 @@ const TokenPage = () => {
 				<h3 className="text-xl mb-6">Testnet Tokens</h3>
 
 				<div className="flex flex-col-reverse md:flex-row gap-6 lg:gap-10">
-					<div className="w-full md:w-1/2 text-white/80">
+					<div className="w-full md:w-1/2 text-neutral-200/80">
 						<p className="mb-4">
 							Faucets drip testnet tokens to anyone who requests
 							them, usually for free. Most faucets, however, limit
@@ -261,7 +261,7 @@ const TokenPage = () => {
 					</div>
 
 					<div className="flex flex-col gap-8 w-full md:w-1/2">
-						<Card className="bg-gradient-to-br from-cyan-800 to-blue-800 border-2 border-cyan-500 text-white pt-6">
+						<Card className="bg-gradient-to-br from-blue-900 to-indigo-900 border-2 border-blue-500 text-neutral-200 pt-6">
 							<CardContent>
 								<h2 className="text-2xl font-bold mb-1">
 									Request Tokens
@@ -295,7 +295,7 @@ const TokenPage = () => {
 										className="w-full"
 									/>
 
-									<div className="flex justify-between mt-2 text-xs text-white/60">
+									<div className="flex justify-between mt-2 text-xs text-neutral-200/60">
 										<span>
 											Min: {token?.minAmount}{" "}
 											{token?.name}
@@ -397,7 +397,7 @@ const TokenPage = () => {
 													key={option.token}
 													value={option.token}
 													aria-label={`Pay with ${option.token}`}
-													className="data-[state=on]:bg-cyan-500"
+													className="data-[state=on]:bg-blue-500"
 												>
 													{option.token}
 												</ToggleGroupItem>
@@ -438,7 +438,7 @@ const TokenPage = () => {
 					</div>
 				</div>
 
-				<div className="w-full text-white/80 pt-8 mx-auto md:w-4/5">
+				<div className="w-full text-neutral-200/80 pt-8 mx-auto md:w-4/5">
 					<h2 className="text-2xl font-bold mb-4">
 						What is {token?.name}?
 					</h2>

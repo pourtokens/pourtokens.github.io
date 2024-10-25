@@ -7,7 +7,7 @@ import { Card, CardContent } from "../ui/card";
 
 const TokenOffers = forwardRef<HTMLElement>((props, ref) => {
 	return (
-		<section className="text-white py-20" ref={ref}>
+		<section className="text-neutral-200 py-20 max-md:px-12" ref={ref}>
 			<div className="container mx-auto px-4">
 				<h2 className="text-3xl md:text-4xl font-bold mb-8 text-center">
 					Available Tokens
@@ -52,10 +52,10 @@ const TokenOffers = forwardRef<HTMLElement>((props, ref) => {
 					].map((token, index) => (
 						<Card
 							key={index}
-							className="w-full sm:w-[240px] bg-gradient-to-br from-cyan-800 to-blue-800 border-2 border-cyan-500 hover:border-cyan-400 text-white transition-all duration-300 transform hover:scale-105 rounded-xl"
+							className="w-full sm:w-[240px] bg-transparent border-2 border-blue-500 text-neutral-200 transition-all duration-300 transform hover:scale-105 rounded-xl"
 						>
 							<CardContent className="p-6 flex flex-col items-center">
-								<HandCoins className="w-16 h-16 mb-4 text-purple-400" />
+								<HandCoins className="w-16 h-16 mb-4 text-pink-600" />
 								<h3 className="text-3xl font-bold mb-2">
 									{token.name}
 								</h3>
@@ -70,7 +70,7 @@ const TokenOffers = forwardRef<HTMLElement>((props, ref) => {
 								</p>
 
 								<Link to={`/token/${token.label}`}>
-									<Button className="bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white font-bold py-2 px-6 rounded-full transition duration-300 ease-in-out">
+									<Button className="bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-neutral-200 font-bold py-2 px-6 rounded-full transition duration-300 ease-in-out">
 										Get {token.name}
 									</Button>
 								</Link>

@@ -7,7 +7,7 @@ interface CTAProps {
 
 const TokenCTA: React.FC<CTAProps> = ({ tokenRef }) => {
 	return (
-		<section className="bg-gradient-to-b from-blue-900 to-cyan-900 text-white py-20">
+		<section className="bg-gradient-to-b from-blue-900 to-indigo-900 text-neutral-200 py-20 max-md:px-12">
 			<div className="container mx-auto px-4">
 				<h2 className="text-3xl md:text-4xl font-bold mb-8 text-center">
 					Say Goodbye to Faucet Frustration
@@ -15,8 +15,8 @@ const TokenCTA: React.FC<CTAProps> = ({ tokenRef }) => {
 
 				<div className="max-w-3xl mx-auto space-y-6">
 					<p className="text-lg text-gray-300">
-						We've all been there – clicking endlessly on faucet
-						buttons, waiting for timers to run out, and still
+						We've all been there &mdash; clicking endlessly on
+						faucet buttons, waiting for timers to run out, and still
 						receiving barely enough tokens to do anything
 						meaningful.
 					</p>
@@ -35,7 +35,7 @@ const TokenCTA: React.FC<CTAProps> = ({ tokenRef }) => {
 
 				<div className="mt-12 flex justify-center">
 					<Button
-						className="bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white font-bold py-3 px-6 rounded-full transition duration-300 ease-in-out transform hover:scale-105"
+						className="bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-neutral-200 font-bold py-3 px-6 rounded-full transition duration-300 ease-in-out transform hover:scale-105"
 						onClick={() => {
 							if (tokenRef.current) {
 								tokenRef.current.scrollIntoView({

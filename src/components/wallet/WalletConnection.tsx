@@ -89,7 +89,7 @@ const WalletConnection = () => {
 				) : (
 					<Button
 						onClick={connectWallet}
-						className="w-full sm:w-auto bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white transition-all duration-300"
+						className="w-full sm:w-auto bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-neutral-200 transition-all duration-300"
 					>
 						Connect Wallet
 					</Button>

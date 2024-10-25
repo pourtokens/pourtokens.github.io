@@ -13,26 +13,31 @@ const Header: React.FC<HeaderProps> = ({ tokenRef }) => {
 	const [isVideoOpen, setIsVideoOpen] = useState(false);
 
 	return (
-		<header className="min-h-dvh bg-gradient-to-br from-blue-900 via-blue-800 to-cyan-900 text-white flex justify-center">
+		<header className="min-h-dvh bg-gradient-to-br from-indigo-900 via-purple-800 to-pink-700 text-neutral-200 flex justify-center items-center overflow-hidden">
 			<div className="container mx-auto px-10 py-20 flex flex-col lg:flex-row items-center justify-center gap-x-12">
 				<div className="lg:w-1/2 space-y-8">
 					<h1 className="text-5xl md:text-6xl font-extrabold leading-tight">
-						<span className="gradient">Pour Tokens</span>
+						<span className="bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-pink-400">
+							Pour Tokens
+						</span>
 					</h1>
 
-					<p className="text-xl md:text-2xl text-gray-300 max-w-2xl">
-						Say Goodbye to Faucet Frustration
+					<p className="text-xl md:text-3xl text-gray-200 max-w-2xl">
+						We provide up to 20X more testnet tokens than anywhere
+						else, without frustration.
 					</p>
 
-					<p className="text-lg text-gray-300 max-w-2xl">
-						Are you tired of endlessly waiting for tiny drops of
-						testnet tokens from faucet sites?
+					<p className="text-md md:text-lg text-gray-300 max-w-2xl">
+						Tired of the wait, the hassle, and the endless clicking
+						for just a trickle of testnet tokens? It's time for
+						something better. At Pour Tokens, we've created a
+						faster, more hassle-free way to get the tokens you need.
+						Say goodbye to faucets that make you work for every
+						drop, and say hello to a smoother experience.
 					</p>
 
-					<p className="text-lg text-gray-300 max-w-2xl">
-						We hear you! At Pour Tokens, we've created the easiest
-						way for you to get the testnet tokens you need without
-						jumping through hoops. If you've ever turned into{" "}
+					<p className="text-md md:text-lg text-gray-300 max-w-2xl">
+						If you've ever felt stuck in the endless loop of{" "}
 						<Dialog
 							open={isVideoOpen}
 							onOpenChange={setIsVideoOpen}
@@ -40,9 +45,9 @@ const Header: React.FC<HeaderProps> = ({ tokenRef }) => {
 							<DialogTrigger asChild>
 								<Button
 									variant="link"
-									className="text-white text-lg hover:text-purple-200 h-0 py-3 px-0"
+									className="text-neutral-200 text-md md:text-lg hover:text-purple-200 h-0 py-3 px-0"
 								>
-									this guy{" "}
+									token faucets{" "}
 									<PlayCircle
 										className="inline-block ml-1"
 										size={16}
@@ -63,12 +68,14 @@ const Header: React.FC<HeaderProps> = ({ tokenRef }) => {
 								</div>
 							</DialogContent>
 						</Dialog>{" "}
-						we’ve got some good news for you.
+						, we are here to break the cycle. Dive in and explore
+						our site &mdash; your testnet tokens are just a click
+						away.
 					</p>
 
 					<div className="flex flex-col sm:flex-row gap-4">
 						<Button
-							className="bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white font-bold py-3 px-6 rounded-full transition duration-300 ease-in-out transform hover:scale-105"
+							className="bg-gradient-to-r from-cyan-500 to-pink-500 hover:from-cyan-600 hover:to-pink-600 text-white font-bold py-3 px-6 rounded-full transition duration-300 ease-in-out"
 							onClick={() => {
 								if (tokenRef.current) {
 									tokenRef.current.scrollIntoView({

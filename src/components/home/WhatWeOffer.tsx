@@ -3,7 +3,7 @@ import { UserPlus, Clock, Waves } from "lucide-react";
 const WhatWeOffer = () => {
 	return (
 		<>
-			<section className="text-white py-20">
+			<section className="text-neutral-200 py-20 max-md:px-12">
 				<div className="container mx-auto px-4 max-w-5xl">
 					<h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">
 						What We Offer
@@ -12,7 +12,7 @@ const WhatWeOffer = () => {
 					<div className="space-y-16">
 						<div className="flex flex-col md:flex-row items-center gap-8">
 							<div className="md:w-1/4 flex justify-center">
-								<UserPlus className="w-24 h-24 text-cyan-400" />
+								<UserPlus className="w-24 h-24 text-blue-400" />
 							</div>
 
 							<div className="md:w-3/4">
@@ -31,7 +31,7 @@ const WhatWeOffer = () => {
 
 						<div className="flex flex-col md:flex-row-reverse items-center gap-8">
 							<div className="md:w-1/4 flex justify-center">
-								<Waves className="w-24 h-24 text-cyan-400" />
+								<Waves className="w-24 h-24 text-blue-400" />
 							</div>
 
 							<div className="md:w-3/4">
@@ -50,7 +50,7 @@ const WhatWeOffer = () => {
 
 						<div className="flex flex-col md:flex-row items-center gap-8">
 							<div className="md:w-1/4 flex justify-center">
-								<Clock className="w-24 h-24 text-cyan-400" />
+								<Clock className="w-24 h-24 text-blue-400" />
 							</div>
 
 							<div className="md:w-3/4">
@@ -70,7 +70,7 @@ const WhatWeOffer = () => {
 				</div>
 			</section>
 
-			<section className="text-white container mx-auto p-4">
+			<section className="text-neutral-200 container mx-auto p-4 max-md:px-12">
 				<h2 className="text-3xl md:text-4xl font-bold mb-8 text-center">
 					Why Pour Tokens?
 				</h2>

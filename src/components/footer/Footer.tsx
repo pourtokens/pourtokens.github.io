@@ -3,7 +3,7 @@ import { Send } from "lucide-react";
 
 const Footer = () => {
 	return (
-		<footer className="bg-blue-900 text-white py-12">
+		<footer className="bg-indigo-900 text-neutral-200 py-12">
 			<div className="container mx-auto px-4">
 				<div className="flex flex-col md:flex-row justify-between items-center">
 					<div className="mb-4 md:mb-0">
@@ -23,7 +23,7 @@ const Footer = () => {
 							href="https://t.me/pourtokens_help_bot"
 							target="_blank"
 							rel="noopener noreferrer"
-							className="flex items-center bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white font-bold py-2 px-4 rounded-full transition duration-300 ease-in-out"
+							className="flex items-center bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-neutral-200 font-bold py-2 px-4 rounded-full transition duration-300 ease-in-out"
 						>
 							Contact Support
 							<Send className="ml-2 h-5 w-5" />

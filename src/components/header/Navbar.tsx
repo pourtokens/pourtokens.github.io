@@ -10,19 +10,21 @@ import { Button } from "../ui/button";
 
 const Navbar = () => {
 	return (
-		<nav className="bg-blue-900 p-4 sticky top-0 z-10 bg-opacity-80 backdrop-blur-sm">
+		<nav className="bg-indigo-900 p-4 sticky top-0 z-10 bg-opacity-80 backdrop-blur-sm">
 			<div className="container mx-auto flex justify-between items-center">
 				<Link
 					to="/"
-					className="text-2xl font-bold text-white flex items-center"
+					className="text-2xl font-bold text-neutral-200 flex items-center"
 				>
-					<span className="gradient">Pour Tokens</span>
+					<span className="bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-pink-400">
+						Pour Tokens
+					</span>
 				</Link>
 
 				{/* <div className="hidden md:flex space-x-8">
 					<Link
 						to="/tokens"
-						className="text-white hover:bg-gradient-to-l from-[#cc25b3] to-[#418dff] hover:text-transparent hover:bg-clip-text transition-colors"
+						className="text-neutral-200 hover:bg-gradient-to-l from-[#cc25b3] to-[#418dff] hover:text-transparent hover:bg-clip-text transition-colors"
 					>
 						Tokens
 					</Link>
@@ -33,7 +35,7 @@ const Navbar = () => {
 						<Button
 							variant="outline"
 							size="icon"
-							className="md:hidden bg-transparent hover:bg-blue-800 hover:text-white outline-none"
+							className="md:hidden bg-transparent hover:bg-transparent hover:text-neutral-200"
 						>
 							<Menu className="h-6 w-6" />
 							<span className="sr-only">Toggle menu</span>
@@ -41,19 +43,25 @@ const Navbar = () => {
 					</DropdownMenuTrigger>
 					<DropdownMenuContent
 						align="end"
-						className="bg-blue-600 rounded-none"
+						className="bg-slate-800 text-neutral-200 text-2xl rounded-none border-none md:hidden min-w-60"
 					>
 						<DropdownMenuItem asChild>
 							<Link to="/">Home</Link>
 						</DropdownMenuItem>
 						<DropdownMenuItem asChild>
-							<Link to="/bundles">Bundles</Link>
+							<Link to="/token/holesky-eth">holeskyETH</Link>
 						</DropdownMenuItem>
 						<DropdownMenuItem asChild>
-							<Link to="/lumia">Lumia</Link>
+							<Link to="/token/sepolia-eth">sepoliaETH</Link>
 						</DropdownMenuItem>
 						<DropdownMenuItem asChild>
-							<Link to="/bera">Bera</Link>
+							<Link to="/token/bera">Bera</Link>
+						</DropdownMenuItem>
+						<DropdownMenuItem asChild>
+							<Link to="/token/lumia">Lumia</Link>
+						</DropdownMenuItem>
+						<DropdownMenuItem asChild>
+							<Link to="/token/ip">IP</Link>
 						</DropdownMenuItem>
 					</DropdownMenuContent>
 				</DropdownMenu>

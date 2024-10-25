@@ -139,17 +139,17 @@ const PaymentDialog = ({
 					onClick={handlePaymentDialogTrigger}
 					disabled={!isConditionAccepted}
 					variant="outline"
-					className="w-full bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 hover:text-white"
+					className="w-full bg-blue-500 hover:bg-indigo-700 hover:text-neutral-200 border-transparent transition-colors"
 				>
 					Request Tokens
 				</Button>
 			</DialogTrigger>
 
-			<DialogContent className="bg-gradient-to-br from-blue-900 to-cyan-900 border-2 border-cyan-500 text-white">
+			<DialogContent className="bg-gradient-to-br from-blue-900 to-indigo-900 border-2 border-blue-600 text-neutral-200">
 				<DialogHeader>
 					<DialogTitle>Request Tokens</DialogTitle>
 
-					<DialogDescription className="text-white/60">
+					<DialogDescription className="text-neutral-200/60">
 						You will receive your tokens on {testnetNetwork}
 					</DialogDescription>
 				</DialogHeader>
@@ -197,7 +197,7 @@ const PaymentDialog = ({
 							onMouseDown={copyDepositAddress}
 							readOnly
 						/>
-						<small className="text-white/60">
+						<small className="text-neutral-200/60">
 							Please send the convenience fee to the destination
 							address on {transactionNetwork}.
 						</small>

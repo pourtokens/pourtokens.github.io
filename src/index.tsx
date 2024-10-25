@@ -18,7 +18,7 @@ const root = ReactDOM.createRoot(
 
 root.render(
 	<React.StrictMode>
-		<div className="min-h-dvh flex flex-col justify-between bg-gradient-to-b from-cyan-900 to-blue-900 text-white">
+		<div className="min-h-dvh flex flex-col justify-between bg-gradient-to-b from-slate-900 to-slate-800 text-neutral-200">
 			<Router>
 				<ScrollToTop />
 				<GAnalytics />
